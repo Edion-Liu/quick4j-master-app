@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.NewYuebanMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.NewYueban" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="yuebantype" property="yuebantype" jdbcType="INTEGER" />
+    <result column="yuebanplan" property="yuebanplan" jdbcType="INTEGER" />
+    <result column="yuebandate" property="yuebandate" jdbcType="TIMESTAMP" />
+    <result column="yuebanadress" property="yuebanadress" jdbcType="VARCHAR" />
+    <result column="yuebantarget" property="yuebantarget" jdbcType="VARCHAR" />
+    <result column="yuebancarstatus" property="yuebancarstatus" jdbcType="INTEGER" />
+    <result column="yuebandemand" property="yuebandemand" jdbcType="INTEGER" />
+    <result column="yuebanpersons" property="yuebanpersons" jdbcType="INTEGER" />
+    <result column="yuebanmoney" property="yuebanmoney" jdbcType="INTEGER" />
+    <result column="yuebandescription" property="yuebandescription" jdbcType="VARCHAR" />
+    <result column="yuebanimage" property="yuebanimage" jdbcType="VARCHAR" />
+    <result column="yuebancall" property="yuebancall" jdbcType="VARCHAR" />
+    <result column="yuebanwecat" property="yuebanwecat" jdbcType="VARCHAR" />
+    <result column="yuebanQQ" property="yuebanqq" jdbcType="VARCHAR" />
+    <result column="yuebancurrentadress" property="yuebancurrentadress" jdbcType="VARCHAR" />
+    <result column="yuebanprotocolstatus" property="yuebanprotocolstatus" jdbcType="INTEGER" />
+    <result column="yuebanuser_id" property="yuebanuserId" jdbcType="INTEGER" />
+    <result column="yuebanscore" property="yuebanscore" jdbcType="INTEGER" />
+    <result column="uinque" property="uinque" jdbcType="VARCHAR" />
+    <result column="yuebanpublishtime" property="yuebanpublishtime" jdbcType="TIMESTAMP" />
+    <result column="yuebanprovince" property="yuebanprovince" jdbcType="INTEGER" />
+    <result column="yuebancity" property="yuebancity" jdbcType="VARCHAR" />
+    <result column="yuebanicon" property="yuebanicon" jdbcType="VARCHAR" />
+    <result column="yuebanname" property="yuebanname" jdbcType="VARCHAR" />
+    <result column="yuebanlongitude" property="yuebanlongitude" jdbcType="VARCHAR" />
+    <result column="yuebanlatitude" property="yuebanlatitude" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, yuebantype, yuebanplan, yuebandate, yuebanadress, yuebantarget, yuebancarstatus, 
+    yuebandemand, yuebanpersons, yuebanmoney, yuebandescription, yuebanimage, yuebancall, 
+    yuebanwecat, yuebanQQ, yuebancurrentadress, yuebanprotocolstatus, yuebanuser_id, 
+    yuebanscore, uinque, yuebanpublishtime, yuebanprovince, yuebancity, yuebanicon, yuebanname, 
+    yuebanlongitude, yuebanlatitude
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.NewYuebanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from new_yueban
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from new_yueban
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new_yueban
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebanExample" >
+    delete from new_yueban
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.NewYueban" >
+    insert into new_yueban (id, yuebantype, yuebanplan, 
+      yuebandate, yuebanadress, yuebantarget, 
+      yuebancarstatus, yuebandemand, yuebanpersons, 
+      yuebanmoney, yuebandescription, yuebanimage, 
+      yuebancall, yuebanwecat, yuebanQQ, 
+      yuebancurrentadress, yuebanprotocolstatus, 
+      yuebanuser_id, yuebanscore, uinque, 
+      yuebanpublishtime, yuebanprovince, yuebancity, 
+      yuebanicon, yuebanname, yuebanlongitude, 
+      yuebanlatitude)
+    values (#{id,jdbcType=INTEGER}, #{yuebantype,jdbcType=INTEGER}, #{yuebanplan,jdbcType=INTEGER}, 
+      #{yuebandate,jdbcType=TIMESTAMP}, #{yuebanadress,jdbcType=VARCHAR}, #{yuebantarget,jdbcType=VARCHAR}, 
+      #{yuebancarstatus,jdbcType=INTEGER}, #{yuebandemand,jdbcType=INTEGER}, #{yuebanpersons,jdbcType=INTEGER}, 
+      #{yuebanmoney,jdbcType=INTEGER}, #{yuebandescription,jdbcType=VARCHAR}, #{yuebanimage,jdbcType=VARCHAR}, 
+      #{yuebancall,jdbcType=VARCHAR}, #{yuebanwecat,jdbcType=VARCHAR}, #{yuebanqq,jdbcType=VARCHAR}, 
+      #{yuebancurrentadress,jdbcType=VARCHAR}, #{yuebanprotocolstatus,jdbcType=INTEGER}, 
+      #{yuebanuserId,jdbcType=INTEGER}, #{yuebanscore,jdbcType=INTEGER}, #{uinque,jdbcType=VARCHAR}, 
+      #{yuebanpublishtime,jdbcType=TIMESTAMP}, #{yuebanprovince,jdbcType=INTEGER}, #{yuebancity,jdbcType=VARCHAR}, 
+      #{yuebanicon,jdbcType=VARCHAR}, #{yuebanname,jdbcType=VARCHAR}, #{yuebanlongitude,jdbcType=VARCHAR}, 
+      #{yuebanlatitude,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.NewYueban" >
+    insert into new_yueban
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="yuebantype != null" >
+        yuebantype,
+      </if>
+      <if test="yuebanplan != null" >
+        yuebanplan,
+      </if>
+      <if test="yuebandate != null" >
+        yuebandate,
+      </if>
+      <if test="yuebanadress != null" >
+        yuebanadress,
+      </if>
+      <if test="yuebantarget != null" >
+        yuebantarget,
+      </if>
+      <if test="yuebancarstatus != null" >
+        yuebancarstatus,
+      </if>
+      <if test="yuebandemand != null" >
+        yuebandemand,
+      </if>
+      <if test="yuebanpersons != null" >
+        yuebanpersons,
+      </if>
+      <if test="yuebanmoney != null" >
+        yuebanmoney,
+      </if>
+      <if test="yuebandescription != null" >
+        yuebandescription,
+      </if>
+      <if test="yuebanimage != null" >
+        yuebanimage,
+      </if>
+      <if test="yuebancall != null" >
+        yuebancall,
+      </if>
+      <if test="yuebanwecat != null" >
+        yuebanwecat,
+      </if>
+      <if test="yuebanqq != null" >
+        yuebanQQ,
+      </if>
+      <if test="yuebancurrentadress != null" >
+        yuebancurrentadress,
+      </if>
+      <if test="yuebanprotocolstatus != null" >
+        yuebanprotocolstatus,
+      </if>
+      <if test="yuebanuserId != null" >
+        yuebanuser_id,
+      </if>
+      <if test="yuebanscore != null" >
+        yuebanscore,
+      </if>
+      <if test="uinque != null" >
+        uinque,
+      </if>
+      <if test="yuebanpublishtime != null" >
+        yuebanpublishtime,
+      </if>
+      <if test="yuebanprovince != null" >
+        yuebanprovince,
+      </if>
+      <if test="yuebancity != null" >
+        yuebancity,
+      </if>
+      <if test="yuebanicon != null" >
+        yuebanicon,
+      </if>
+      <if test="yuebanname != null" >
+        yuebanname,
+      </if>
+      <if test="yuebanlongitude != null" >
+        yuebanlongitude,
+      </if>
+      <if test="yuebanlatitude != null" >
+        yuebanlatitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="yuebantype != null" >
+        #{yuebantype,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanplan != null" >
+        #{yuebanplan,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandate != null" >
+        #{yuebandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanadress != null" >
+        #{yuebanadress,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebantarget != null" >
+        #{yuebantarget,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancarstatus != null" >
+        #{yuebancarstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandemand != null" >
+        #{yuebandemand,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanpersons != null" >
+        #{yuebanpersons,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanmoney != null" >
+        #{yuebanmoney,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandescription != null" >
+        #{yuebandescription,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanimage != null" >
+        #{yuebanimage,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancall != null" >
+        #{yuebancall,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanwecat != null" >
+        #{yuebanwecat,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanqq != null" >
+        #{yuebanqq,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancurrentadress != null" >
+        #{yuebancurrentadress,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanprotocolstatus != null" >
+        #{yuebanprotocolstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanuserId != null" >
+        #{yuebanuserId,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanscore != null" >
+        #{yuebanscore,jdbcType=INTEGER},
+      </if>
+      <if test="uinque != null" >
+        #{uinque,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanpublishtime != null" >
+        #{yuebanpublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanprovince != null" >
+        #{yuebanprovince,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancity != null" >
+        #{yuebancity,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanicon != null" >
+        #{yuebanicon,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanname != null" >
+        #{yuebanname,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanlongitude != null" >
+        #{yuebanlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanlatitude != null" >
+        #{yuebanlatitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebanExample" resultType="java.lang.Integer" >
+    select count(*) from new_yueban
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update new_yueban
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebantype != null" >
+        yuebantype = #{record.yuebantype,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanplan != null" >
+        yuebanplan = #{record.yuebanplan,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebandate != null" >
+        yuebandate = #{record.yuebandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yuebanadress != null" >
+        yuebanadress = #{record.yuebanadress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebantarget != null" >
+        yuebantarget = #{record.yuebantarget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebancarstatus != null" >
+        yuebancarstatus = #{record.yuebancarstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebandemand != null" >
+        yuebandemand = #{record.yuebandemand,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanpersons != null" >
+        yuebanpersons = #{record.yuebanpersons,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanmoney != null" >
+        yuebanmoney = #{record.yuebanmoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebandescription != null" >
+        yuebandescription = #{record.yuebandescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanimage != null" >
+        yuebanimage = #{record.yuebanimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebancall != null" >
+        yuebancall = #{record.yuebancall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanwecat != null" >
+        yuebanwecat = #{record.yuebanwecat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanqq != null" >
+        yuebanQQ = #{record.yuebanqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebancurrentadress != null" >
+        yuebancurrentadress = #{record.yuebancurrentadress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanprotocolstatus != null" >
+        yuebanprotocolstatus = #{record.yuebanprotocolstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanuserId != null" >
+        yuebanuser_id = #{record.yuebanuserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanscore != null" >
+        yuebanscore = #{record.yuebanscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.uinque != null" >
+        uinque = #{record.uinque,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanpublishtime != null" >
+        yuebanpublishtime = #{record.yuebanpublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yuebanprovince != null" >
+        yuebanprovince = #{record.yuebanprovince,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebancity != null" >
+        yuebancity = #{record.yuebancity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanicon != null" >
+        yuebanicon = #{record.yuebanicon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanname != null" >
+        yuebanname = #{record.yuebanname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanlongitude != null" >
+        yuebanlongitude = #{record.yuebanlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanlatitude != null" >
+        yuebanlatitude = #{record.yuebanlatitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update new_yueban
+    set id = #{record.id,jdbcType=INTEGER},
+      yuebantype = #{record.yuebantype,jdbcType=INTEGER},
+      yuebanplan = #{record.yuebanplan,jdbcType=INTEGER},
+      yuebandate = #{record.yuebandate,jdbcType=TIMESTAMP},
+      yuebanadress = #{record.yuebanadress,jdbcType=VARCHAR},
+      yuebantarget = #{record.yuebantarget,jdbcType=VARCHAR},
+      yuebancarstatus = #{record.yuebancarstatus,jdbcType=INTEGER},
+      yuebandemand = #{record.yuebandemand,jdbcType=INTEGER},
+      yuebanpersons = #{record.yuebanpersons,jdbcType=INTEGER},
+      yuebanmoney = #{record.yuebanmoney,jdbcType=INTEGER},
+      yuebandescription = #{record.yuebandescription,jdbcType=VARCHAR},
+      yuebanimage = #{record.yuebanimage,jdbcType=VARCHAR},
+      yuebancall = #{record.yuebancall,jdbcType=VARCHAR},
+      yuebanwecat = #{record.yuebanwecat,jdbcType=VARCHAR},
+      yuebanQQ = #{record.yuebanqq,jdbcType=VARCHAR},
+      yuebancurrentadress = #{record.yuebancurrentadress,jdbcType=VARCHAR},
+      yuebanprotocolstatus = #{record.yuebanprotocolstatus,jdbcType=INTEGER},
+      yuebanuser_id = #{record.yuebanuserId,jdbcType=INTEGER},
+      yuebanscore = #{record.yuebanscore,jdbcType=INTEGER},
+      uinque = #{record.uinque,jdbcType=VARCHAR},
+      yuebanpublishtime = #{record.yuebanpublishtime,jdbcType=TIMESTAMP},
+      yuebanprovince = #{record.yuebanprovince,jdbcType=INTEGER},
+      yuebancity = #{record.yuebancity,jdbcType=VARCHAR},
+      yuebanicon = #{record.yuebanicon,jdbcType=VARCHAR},
+      yuebanname = #{record.yuebanname,jdbcType=VARCHAR},
+      yuebanlongitude = #{record.yuebanlongitude,jdbcType=VARCHAR},
+      yuebanlatitude = #{record.yuebanlatitude,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.NewYueban" >
+    update new_yueban
+    <set >
+      <if test="yuebantype != null" >
+        yuebantype = #{yuebantype,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanplan != null" >
+        yuebanplan = #{yuebanplan,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandate != null" >
+        yuebandate = #{yuebandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanadress != null" >
+        yuebanadress = #{yuebanadress,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebantarget != null" >
+        yuebantarget = #{yuebantarget,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancarstatus != null" >
+        yuebancarstatus = #{yuebancarstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandemand != null" >
+        yuebandemand = #{yuebandemand,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanpersons != null" >
+        yuebanpersons = #{yuebanpersons,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanmoney != null" >
+        yuebanmoney = #{yuebanmoney,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandescription != null" >
+        yuebandescription = #{yuebandescription,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanimage != null" >
+        yuebanimage = #{yuebanimage,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancall != null" >
+        yuebancall = #{yuebancall,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanwecat != null" >
+        yuebanwecat = #{yuebanwecat,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanqq != null" >
+        yuebanQQ = #{yuebanqq,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancurrentadress != null" >
+        yuebancurrentadress = #{yuebancurrentadress,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanprotocolstatus != null" >
+        yuebanprotocolstatus = #{yuebanprotocolstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanuserId != null" >
+        yuebanuser_id = #{yuebanuserId,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanscore != null" >
+        yuebanscore = #{yuebanscore,jdbcType=INTEGER},
+      </if>
+      <if test="uinque != null" >
+        uinque = #{uinque,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanpublishtime != null" >
+        yuebanpublishtime = #{yuebanpublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanprovince != null" >
+        yuebanprovince = #{yuebanprovince,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancity != null" >
+        yuebancity = #{yuebancity,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanicon != null" >
+        yuebanicon = #{yuebanicon,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanname != null" >
+        yuebanname = #{yuebanname,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanlongitude != null" >
+        yuebanlongitude = #{yuebanlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanlatitude != null" >
+        yuebanlatitude = #{yuebanlatitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.NewYueban" >
+    update new_yueban
+    set yuebantype = #{yuebantype,jdbcType=INTEGER},
+      yuebanplan = #{yuebanplan,jdbcType=INTEGER},
+      yuebandate = #{yuebandate,jdbcType=TIMESTAMP},
+      yuebanadress = #{yuebanadress,jdbcType=VARCHAR},
+      yuebantarget = #{yuebantarget,jdbcType=VARCHAR},
+      yuebancarstatus = #{yuebancarstatus,jdbcType=INTEGER},
+      yuebandemand = #{yuebandemand,jdbcType=INTEGER},
+      yuebanpersons = #{yuebanpersons,jdbcType=INTEGER},
+      yuebanmoney = #{yuebanmoney,jdbcType=INTEGER},
+      yuebandescription = #{yuebandescription,jdbcType=VARCHAR},
+      yuebanimage = #{yuebanimage,jdbcType=VARCHAR},
+      yuebancall = #{yuebancall,jdbcType=VARCHAR},
+      yuebanwecat = #{yuebanwecat,jdbcType=VARCHAR},
+      yuebanQQ = #{yuebanqq,jdbcType=VARCHAR},
+      yuebancurrentadress = #{yuebancurrentadress,jdbcType=VARCHAR},
+      yuebanprotocolstatus = #{yuebanprotocolstatus,jdbcType=INTEGER},
+      yuebanuser_id = #{yuebanuserId,jdbcType=INTEGER},
+      yuebanscore = #{yuebanscore,jdbcType=INTEGER},
+      uinque = #{uinque,jdbcType=VARCHAR},
+      yuebanpublishtime = #{yuebanpublishtime,jdbcType=TIMESTAMP},
+      yuebanprovince = #{yuebanprovince,jdbcType=INTEGER},
+      yuebancity = #{yuebancity,jdbcType=VARCHAR},
+      yuebanicon = #{yuebanicon,jdbcType=VARCHAR},
+      yuebanname = #{yuebanname,jdbcType=VARCHAR},
+      yuebanlongitude = #{yuebanlongitude,jdbcType=VARCHAR},
+      yuebanlatitude = #{yuebanlatitude,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、自定义、、、、、、、、、、、、、、、、、、、、、、、、、、、、-->
+
+
+  <select id="get_latest" parameterType="int"  resultType="com.eliteams.quick4j.web.model.NewYuebanCoustom" >
+    select
+    *
+    from
+    new_yueban
+    order by yuebanpublishtime desc limit #{0},#{1}
+  </select>
+
+  <select id="get_latest_pagehelper"   parameterType="int" resultType="com.eliteams.quick4j.web.model.NewYuebanCoustom" >
+    select
+    *
+    from
+    new_yueban
+    WHERE yuebanprovince=#{0} order by yuebanpublishtime desc
+  </select>
+
+  <select id="get_latest_pagehelperByUser"   parameterType="int" resultType="com.eliteams.quick4j.web.model.NewYuebanCoustom" >
+    select
+    *
+    from
+    new_yueban
+    WHERE yuebanuser_id=#{0} order by yuebanpublishtime desc
+  </select>
+
+
+
+
+  <select id="get_recordcount"  resultType="int" >
+    select
+    COUNT(*)
+    from
+    new_yueban
+
+  </select>
+
+
+
+</mapper>

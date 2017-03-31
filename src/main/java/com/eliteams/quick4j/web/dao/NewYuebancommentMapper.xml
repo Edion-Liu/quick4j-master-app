@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.NewYuebancommentMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.NewYuebancomment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="yuebanid" property="yuebanid" jdbcType="INTEGER" />
+    <result column="yuebancontent" property="yuebancontent" jdbcType="VARCHAR" />
+    <result column="yuebantime" property="yuebantime" jdbcType="TIMESTAMP" />
+    <result column="yuebancommentid" property="yuebancommentid" jdbcType="INTEGER" />
+    <result column="yuebancommentsex" property="yuebancommentsex" jdbcType="INTEGER" />
+    <result column="yuebandistanc" property="yuebandistanc" jdbcType="INTEGER" />
+    <result column="yuebancommentname" property="yuebancommentname" jdbcType="VARCHAR" />
+    <result column="yuebancommenticon" property="yuebancommenticon" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, yuebanid, yuebancontent, yuebantime, yuebancommentid, yuebancommentsex, yuebandistanc, 
+    yuebancommentname, yuebancommenticon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.NewYuebancommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from new_yuebancomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from new_yuebancomment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new_yuebancomment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebancommentExample" >
+    delete from new_yuebancomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.NewYuebancomment" >
+    insert into new_yuebancomment (id, yuebanid, yuebancontent, 
+      yuebantime, yuebancommentid, yuebancommentsex, 
+      yuebandistanc, yuebancommentname, yuebancommenticon
+      )
+    values (#{id,jdbcType=INTEGER}, #{yuebanid,jdbcType=INTEGER}, #{yuebancontent,jdbcType=VARCHAR}, 
+      #{yuebantime,jdbcType=TIMESTAMP}, #{yuebancommentid,jdbcType=INTEGER}, #{yuebancommentsex,jdbcType=INTEGER}, 
+      #{yuebandistanc,jdbcType=INTEGER}, #{yuebancommentname,jdbcType=VARCHAR}, #{yuebancommenticon,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.NewYuebancomment" >
+    insert into new_yuebancomment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="yuebanid != null" >
+        yuebanid,
+      </if>
+      <if test="yuebancontent != null" >
+        yuebancontent,
+      </if>
+      <if test="yuebantime != null" >
+        yuebantime,
+      </if>
+      <if test="yuebancommentid != null" >
+        yuebancommentid,
+      </if>
+      <if test="yuebancommentsex != null" >
+        yuebancommentsex,
+      </if>
+      <if test="yuebandistanc != null" >
+        yuebandistanc,
+      </if>
+      <if test="yuebancommentname != null" >
+        yuebancommentname,
+      </if>
+      <if test="yuebancommenticon != null" >
+        yuebancommenticon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanid != null" >
+        #{yuebanid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancontent != null" >
+        #{yuebancontent,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebantime != null" >
+        #{yuebantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebancommentid != null" >
+        #{yuebancommentid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancommentsex != null" >
+        #{yuebancommentsex,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandistanc != null" >
+        #{yuebandistanc,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancommentname != null" >
+        #{yuebancommentname,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancommenticon != null" >
+        #{yuebancommenticon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebancommentExample" resultType="java.lang.Integer" >
+    select count(*) from new_yuebancomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update new_yuebancomment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanid != null" >
+        yuebanid = #{record.yuebanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebancontent != null" >
+        yuebancontent = #{record.yuebancontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebantime != null" >
+        yuebantime = #{record.yuebantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yuebancommentid != null" >
+        yuebancommentid = #{record.yuebancommentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebancommentsex != null" >
+        yuebancommentsex = #{record.yuebancommentsex,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebandistanc != null" >
+        yuebandistanc = #{record.yuebandistanc,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebancommentname != null" >
+        yuebancommentname = #{record.yuebancommentname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebancommenticon != null" >
+        yuebancommenticon = #{record.yuebancommenticon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update new_yuebancomment
+    set id = #{record.id,jdbcType=INTEGER},
+      yuebanid = #{record.yuebanid,jdbcType=INTEGER},
+      yuebancontent = #{record.yuebancontent,jdbcType=VARCHAR},
+      yuebantime = #{record.yuebantime,jdbcType=TIMESTAMP},
+      yuebancommentid = #{record.yuebancommentid,jdbcType=INTEGER},
+      yuebancommentsex = #{record.yuebancommentsex,jdbcType=INTEGER},
+      yuebandistanc = #{record.yuebandistanc,jdbcType=INTEGER},
+      yuebancommentname = #{record.yuebancommentname,jdbcType=VARCHAR},
+      yuebancommenticon = #{record.yuebancommenticon,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.NewYuebancomment" >
+    update new_yuebancomment
+    <set >
+      <if test="yuebanid != null" >
+        yuebanid = #{yuebanid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancontent != null" >
+        yuebancontent = #{yuebancontent,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebantime != null" >
+        yuebantime = #{yuebantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebancommentid != null" >
+        yuebancommentid = #{yuebancommentid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancommentsex != null" >
+        yuebancommentsex = #{yuebancommentsex,jdbcType=INTEGER},
+      </if>
+      <if test="yuebandistanc != null" >
+        yuebandistanc = #{yuebandistanc,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancommentname != null" >
+        yuebancommentname = #{yuebancommentname,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebancommenticon != null" >
+        yuebancommenticon = #{yuebancommenticon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.NewYuebancomment" >
+    update new_yuebancomment
+    set yuebanid = #{yuebanid,jdbcType=INTEGER},
+      yuebancontent = #{yuebancontent,jdbcType=VARCHAR},
+      yuebantime = #{yuebantime,jdbcType=TIMESTAMP},
+      yuebancommentid = #{yuebancommentid,jdbcType=INTEGER},
+      yuebancommentsex = #{yuebancommentsex,jdbcType=INTEGER},
+      yuebandistanc = #{yuebandistanc,jdbcType=INTEGER},
+      yuebancommentname = #{yuebancommentname,jdbcType=VARCHAR},
+      yuebancommenticon = #{yuebancommenticon,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

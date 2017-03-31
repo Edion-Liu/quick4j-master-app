@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.TUserMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.TUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="push_set" property="pushSet" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="last_login_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
+    <result column="access_token" property="accessToken" jdbcType="VARCHAR" />
+    <result column="unique_token" property="uniqueToken" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="INTEGER" />
+    <result column="os_version" property="osVersion" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="credential_num" property="credentialNum" jdbcType="INTEGER" />
+    <result column="credential_type" property="credentialType" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="sns_token" property="snsToken" jdbcType="VARCHAR" />
+    <result column="sns_id" property="snsId" jdbcType="VARCHAR" />
+    <result column="sns_type" property="snsType" jdbcType="INTEGER" />
+    <result column="sns_account" property="snsAccount" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="is_share" property="isShare" jdbcType="INTEGER" />
+    <result column="is_visible" property="isVisible" jdbcType="INTEGER" />
+    <result column="wowo_count" property="wowoCount" jdbcType="INTEGER" />
+    <result column="attraction_count" property="attractionCount" jdbcType="INTEGER" />
+    <result column="stay_count" property="stayCount" jdbcType="INTEGER" />
+    <result column="enterainment_count" property="enterainmentCount" jdbcType="INTEGER" />
+    <result column="food_count" property="foodCount" jdbcType="INTEGER" />
+    <result column="rand_str" property="randStr" jdbcType="VARCHAR" />
+    <result column="points" property="points" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="is_phone_auth" property="isPhoneAuth" jdbcType="INTEGER" />
+    <result column="license_auth_status" property="licenseAuthStatus" jdbcType="INTEGER" />
+    <result column="license" property="license" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+    <result column="shop_phone" property="shopPhone" jdbcType="VARCHAR" />
+    <result column="shop_lat" property="shopLat" jdbcType="DOUBLE" />
+    <result column="shop_lng" property="shopLng" jdbcType="DOUBLE" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="k_code" property="kCode" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="is_black" property="isBlack" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, email, phone, name, nick_name, password, address, city, description, device_token, 
+    push_set, icon, last_login_date, access_token, unique_token, device_type, os_version, 
+    phone_number, credential_num, credential_type, score, sns_token, sns_id, sns_type, 
+    sns_account, longitude, latitude, is_share, is_visible, wowo_count, attraction_count, 
+    stay_count, enterainment_count, food_count, rand_str, points, title, level, is_phone_auth, 
+    license_auth_status, license, shop_name, shop_address, shop_phone, shop_lat, shop_lng, 
+    role, k_code, is_valid, is_black, created_at, updated_at
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.TUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.TUserExample" >
+    delete from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+
+
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.TUser"  useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user (id, email, phone, 
+      name, nick_name, password, 
+      address, city, description, 
+      device_token, push_set, icon, 
+      last_login_date, access_token, unique_token, 
+      device_type, os_version, phone_number, 
+      credential_num, credential_type, score, 
+      sns_token, sns_id, sns_type, 
+      sns_account, longitude, latitude, 
+      is_share, is_visible, wowo_count, 
+      attraction_count, stay_count, enterainment_count, 
+      food_count, rand_str, points, 
+      title, level, is_phone_auth, 
+      license_auth_status, license, shop_name, 
+      shop_address, shop_phone, shop_lat, 
+      shop_lng, role, k_code, 
+      is_valid, is_black, created_at, 
+      updated_at)
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{nickName,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{deviceToken,jdbcType=VARCHAR}, #{pushSet,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{lastLoginDate,jdbcType=TIMESTAMP}, #{accessToken,jdbcType=VARCHAR}, #{uniqueToken,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=INTEGER}, #{osVersion,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{credentialNum,jdbcType=INTEGER}, #{credentialType,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{snsToken,jdbcType=VARCHAR}, #{snsId,jdbcType=VARCHAR}, #{snsType,jdbcType=INTEGER}, 
+      #{snsAccount,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{isShare,jdbcType=INTEGER}, #{isVisible,jdbcType=INTEGER}, #{wowoCount,jdbcType=INTEGER}, 
+      #{attractionCount,jdbcType=INTEGER}, #{stayCount,jdbcType=INTEGER}, #{enterainmentCount,jdbcType=INTEGER}, 
+      #{foodCount,jdbcType=INTEGER}, #{randStr,jdbcType=VARCHAR}, #{points,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{isPhoneAuth,jdbcType=INTEGER}, 
+      #{licenseAuthStatus,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, 
+      #{shopAddress,jdbcType=VARCHAR}, #{shopPhone,jdbcType=VARCHAR}, #{shopLat,jdbcType=DOUBLE}, 
+      #{shopLng,jdbcType=DOUBLE}, #{role,jdbcType=INTEGER}, #{kCode,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=INTEGER}, #{isBlack,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.TUser" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="deviceToken != null" >
+        device_token,
+      </if>
+      <if test="pushSet != null" >
+        push_set,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date,
+      </if>
+      <if test="accessToken != null" >
+        access_token,
+      </if>
+      <if test="uniqueToken != null" >
+        unique_token,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="osVersion != null" >
+        os_version,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="credentialNum != null" >
+        credential_num,
+      </if>
+      <if test="credentialType != null" >
+        credential_type,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="snsToken != null" >
+        sns_token,
+      </if>
+      <if test="snsId != null" >
+        sns_id,
+      </if>
+      <if test="snsType != null" >
+        sns_type,
+      </if>
+      <if test="snsAccount != null" >
+        sns_account,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="isShare != null" >
+        is_share,
+      </if>
+      <if test="isVisible != null" >
+        is_visible,
+      </if>
+      <if test="wowoCount != null" >
+        wowo_count,
+      </if>
+      <if test="attractionCount != null" >
+        attraction_count,
+      </if>
+      <if test="stayCount != null" >
+        stay_count,
+      </if>
+      <if test="enterainmentCount != null" >
+        enterainment_count,
+      </if>
+      <if test="foodCount != null" >
+        food_count,
+      </if>
+      <if test="randStr != null" >
+        rand_str,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="isPhoneAuth != null" >
+        is_phone_auth,
+      </if>
+      <if test="licenseAuthStatus != null" >
+        license_auth_status,
+      </if>
+      <if test="license != null" >
+        license,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopAddress != null" >
+        shop_address,
+      </if>
+      <if test="shopPhone != null" >
+        shop_phone,
+      </if>
+      <if test="shopLat != null" >
+        shop_lat,
+      </if>
+      <if test="shopLng != null" >
+        shop_lng,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="kCode != null" >
+        k_code,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="isBlack != null" >
+        is_black,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushSet != null" >
+        #{pushSet,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessToken != null" >
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null" >
+        #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="osVersion != null" >
+        #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        #{credentialNum,jdbcType=INTEGER},
+      </if>
+      <if test="credentialType != null" >
+        #{credentialType,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="snsToken != null" >
+        #{snsToken,jdbcType=VARCHAR},
+      </if>
+      <if test="snsId != null" >
+        #{snsId,jdbcType=VARCHAR},
+      </if>
+      <if test="snsType != null" >
+        #{snsType,jdbcType=INTEGER},
+      </if>
+      <if test="snsAccount != null" >
+        #{snsAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="isShare != null" >
+        #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="wowoCount != null" >
+        #{wowoCount,jdbcType=INTEGER},
+      </if>
+      <if test="attractionCount != null" >
+        #{attractionCount,jdbcType=INTEGER},
+      </if>
+      <if test="stayCount != null" >
+        #{stayCount,jdbcType=INTEGER},
+      </if>
+      <if test="enterainmentCount != null" >
+        #{enterainmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="foodCount != null" >
+        #{foodCount,jdbcType=INTEGER},
+      </if>
+      <if test="randStr != null" >
+        #{randStr,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isPhoneAuth != null" >
+        #{isPhoneAuth,jdbcType=INTEGER},
+      </if>
+      <if test="licenseAuthStatus != null" >
+        #{licenseAuthStatus,jdbcType=INTEGER},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPhone != null" >
+        #{shopPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLat != null" >
+        #{shopLat,jdbcType=DOUBLE},
+      </if>
+      <if test="shopLng != null" >
+        #{shopLng,jdbcType=DOUBLE},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="kCode != null" >
+        #{kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="isBlack != null" >
+        #{isBlack,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.TUserExample" resultType="java.lang.Integer" >
+    select count(*) from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=INTEGER},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceToken != null" >
+        device_token = #{record.deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushSet != null" >
+        push_set = #{record.pushSet,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLoginDate != null" >
+        last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accessToken != null" >
+        access_token = #{record.accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueToken != null" >
+        unique_token = #{record.uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceType != null" >
+        device_type = #{record.deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.osVersion != null" >
+        os_version = #{record.osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumber != null" >
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialNum != null" >
+        credential_num = #{record.credentialNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.credentialType != null" >
+        credential_type = #{record.credentialType,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.snsToken != null" >
+        sns_token = #{record.snsToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snsId != null" >
+        sns_id = #{record.snsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snsType != null" >
+        sns_type = #{record.snsType,jdbcType=INTEGER},
+      </if>
+      <if test="record.snsAccount != null" >
+        sns_account = #{record.snsAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isShare != null" >
+        is_share = #{record.isShare,jdbcType=INTEGER},
+      </if>
+      <if test="record.isVisible != null" >
+        is_visible = #{record.isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="record.wowoCount != null" >
+        wowo_count = #{record.wowoCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.attractionCount != null" >
+        attraction_count = #{record.attractionCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.stayCount != null" >
+        stay_count = #{record.stayCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.enterainmentCount != null" >
+        enterainment_count = #{record.enterainmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.foodCount != null" >
+        food_count = #{record.foodCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.randStr != null" >
+        rand_str = #{record.randStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.points != null" >
+        points = #{record.points,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPhoneAuth != null" >
+        is_phone_auth = #{record.isPhoneAuth,jdbcType=INTEGER},
+      </if>
+      <if test="record.licenseAuthStatus != null" >
+        license_auth_status = #{record.licenseAuthStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.license != null" >
+        license = #{record.license,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopName != null" >
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopAddress != null" >
+        shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopPhone != null" >
+        shop_phone = #{record.shopPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopLat != null" >
+        shop_lat = #{record.shopLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.shopLng != null" >
+        shop_lng = #{record.shopLng,jdbcType=DOUBLE},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=INTEGER},
+      </if>
+      <if test="record.kCode != null" >
+        k_code = #{record.kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isValid != null" >
+        is_valid = #{record.isValid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isBlack != null" >
+        is_black = #{record.isBlack,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user
+    set id = #{record.id,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=INTEGER},
+      password = #{record.password,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      device_token = #{record.deviceToken,jdbcType=VARCHAR},
+      push_set = #{record.pushSet,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      access_token = #{record.accessToken,jdbcType=VARCHAR},
+      unique_token = #{record.uniqueToken,jdbcType=VARCHAR},
+      device_type = #{record.deviceType,jdbcType=INTEGER},
+      os_version = #{record.osVersion,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      credential_num = #{record.credentialNum,jdbcType=INTEGER},
+      credential_type = #{record.credentialType,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      sns_token = #{record.snsToken,jdbcType=VARCHAR},
+      sns_id = #{record.snsId,jdbcType=VARCHAR},
+      sns_type = #{record.snsType,jdbcType=INTEGER},
+      sns_account = #{record.snsAccount,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      is_share = #{record.isShare,jdbcType=INTEGER},
+      is_visible = #{record.isVisible,jdbcType=INTEGER},
+      wowo_count = #{record.wowoCount,jdbcType=INTEGER},
+      attraction_count = #{record.attractionCount,jdbcType=INTEGER},
+      stay_count = #{record.stayCount,jdbcType=INTEGER},
+      enterainment_count = #{record.enterainmentCount,jdbcType=INTEGER},
+      food_count = #{record.foodCount,jdbcType=INTEGER},
+      rand_str = #{record.randStr,jdbcType=VARCHAR},
+      points = #{record.points,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      is_phone_auth = #{record.isPhoneAuth,jdbcType=INTEGER},
+      license_auth_status = #{record.licenseAuthStatus,jdbcType=INTEGER},
+      license = #{record.license,jdbcType=VARCHAR},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+      shop_phone = #{record.shopPhone,jdbcType=VARCHAR},
+      shop_lat = #{record.shopLat,jdbcType=DOUBLE},
+      shop_lng = #{record.shopLng,jdbcType=DOUBLE},
+      role = #{record.role,jdbcType=INTEGER},
+      k_code = #{record.kCode,jdbcType=VARCHAR},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      is_black = #{record.isBlack,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.TUser" >
+    update t_user
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null" >
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushSet != null" >
+        push_set = #{pushSet,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessToken != null" >
+        access_token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueToken != null" >
+        unique_token = #{uniqueToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="osVersion != null" >
+        os_version = #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialNum != null" >
+        credential_num = #{credentialNum,jdbcType=INTEGER},
+      </if>
+      <if test="credentialType != null" >
+        credential_type = #{credentialType,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="snsToken != null" >
+        sns_token = #{snsToken,jdbcType=VARCHAR},
+      </if>
+      <if test="snsId != null" >
+        sns_id = #{snsId,jdbcType=VARCHAR},
+      </if>
+      <if test="snsType != null" >
+        sns_type = #{snsType,jdbcType=INTEGER},
+      </if>
+      <if test="snsAccount != null" >
+        sns_account = #{snsAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="isShare != null" >
+        is_share = #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        is_visible = #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="wowoCount != null" >
+        wowo_count = #{wowoCount,jdbcType=INTEGER},
+      </if>
+      <if test="attractionCount != null" >
+        attraction_count = #{attractionCount,jdbcType=INTEGER},
+      </if>
+      <if test="stayCount != null" >
+        stay_count = #{stayCount,jdbcType=INTEGER},
+      </if>
+      <if test="enterainmentCount != null" >
+        enterainment_count = #{enterainmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="foodCount != null" >
+        food_count = #{foodCount,jdbcType=INTEGER},
+      </if>
+      <if test="randStr != null" >
+        rand_str = #{randStr,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isPhoneAuth != null" >
+        is_phone_auth = #{isPhoneAuth,jdbcType=INTEGER},
+      </if>
+      <if test="licenseAuthStatus != null" >
+        license_auth_status = #{licenseAuthStatus,jdbcType=INTEGER},
+      </if>
+      <if test="license != null" >
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        shop_address = #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPhone != null" >
+        shop_phone = #{shopPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLat != null" >
+        shop_lat = #{shopLat,jdbcType=DOUBLE},
+      </if>
+      <if test="shopLng != null" >
+        shop_lng = #{shopLng,jdbcType=DOUBLE},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="kCode != null" >
+        k_code = #{kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="isBlack != null" >
+        is_black = #{isBlack,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.TUser" >
+    update t_user
+    set email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      device_token = #{deviceToken,jdbcType=VARCHAR},
+      push_set = #{pushSet,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      access_token = #{accessToken,jdbcType=VARCHAR},
+      unique_token = #{uniqueToken,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
+      os_version = #{osVersion,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      credential_num = #{credentialNum,jdbcType=INTEGER},
+      credential_type = #{credentialType,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      sns_token = #{snsToken,jdbcType=VARCHAR},
+      sns_id = #{snsId,jdbcType=VARCHAR},
+      sns_type = #{snsType,jdbcType=INTEGER},
+      sns_account = #{snsAccount,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      is_share = #{isShare,jdbcType=INTEGER},
+      is_visible = #{isVisible,jdbcType=INTEGER},
+      wowo_count = #{wowoCount,jdbcType=INTEGER},
+      attraction_count = #{attractionCount,jdbcType=INTEGER},
+      stay_count = #{stayCount,jdbcType=INTEGER},
+      enterainment_count = #{enterainmentCount,jdbcType=INTEGER},
+      food_count = #{foodCount,jdbcType=INTEGER},
+      rand_str = #{randStr,jdbcType=VARCHAR},
+      points = #{points,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      is_phone_auth = #{isPhoneAuth,jdbcType=INTEGER},
+      license_auth_status = #{licenseAuthStatus,jdbcType=INTEGER},
+      license = #{license,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_address = #{shopAddress,jdbcType=VARCHAR},
+      shop_phone = #{shopPhone,jdbcType=VARCHAR},
+      shop_lat = #{shopLat,jdbcType=DOUBLE},
+      shop_lng = #{shopLng,jdbcType=DOUBLE},
+      role = #{role,jdbcType=INTEGER},
+      k_code = #{kCode,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      is_black = #{isBlack,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--自定义修改-->
+
+
+  <select id="getTUserByid" resultType="com.eliteams.quick4j.web.model.TUser">
+     SELECT t_user.name,t_user.icon,t_user.id FROM t_user WHERE t_user.id=#{0}
+
+  </select>
+
+
+
+
+    <resultMap id="tFriendVo" type="com.eliteams.quick4j.web.model.VO.TFriendVO" >
+
+        <association property="tUser" javaType="com.eliteams.quick4j.web.model.TUser" >
+            <id column="t_user_id" property="id"/>
+            <result column="user_name" property="name"/>
+            <result column="icon" property="icon"/>
+        </association>
+
+    </resultMap>
+
+
+<select id="getMyFans" resultMap="tFriendVo">
+
+    SELECT
+
+    t_user.id AS t_user_id,
+    t_user.name AS user_name,
+    t_user.icon
+    FROM
+    t_friend
+    INNER  JOIN
+    t_user
+    ON
+    t_friend.friend_id=t_user.id
+    WHERE
+    t_friend.user_id=#{0}
+
+
+</select>
+
+</mapper>

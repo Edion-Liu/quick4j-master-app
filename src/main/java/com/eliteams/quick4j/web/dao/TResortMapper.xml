@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.TResortMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.TResort" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="campsite_type" property="campsiteType" jdbcType="VARCHAR" />
+    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="is_has_water" property="isHasWater" jdbcType="INTEGER" />
+    <result column="is_has_electric" property="isHasElectric" jdbcType="INTEGER" />
+    <result column="is_has_toilet" property="isHasToilet" jdbcType="INTEGER" />
+    <result column="is_can_bathe" property="isCanBathe" jdbcType="INTEGER" />
+    <result column="is_has_restaurant" property="isHasRestaurant" jdbcType="INTEGER" />
+    <result column="is_can_shopping" property="isCanShopping" jdbcType="INTEGER" />
+    <result column="is_has_bar" property="isHasBar" jdbcType="INTEGER" />
+    <result column="is_can_barbecue" property="isCanBarbecue" jdbcType="INTEGER" />
+    <result column="is_can_ski" property="isCanSki" jdbcType="INTEGER" />
+    <result column="is_has_playground" property="isHasPlayground" jdbcType="INTEGER" />
+    <result column="is_can_footpath" property="isCanFootpath" jdbcType="INTEGER" />
+    <result column="is_can_cycle" property="isCanCycle" jdbcType="INTEGER" />
+    <result column="is_can_fishing" property="isCanFishing" jdbcType="INTEGER" />
+    <result column="is_can_ride" property="isCanRide" jdbcType="INTEGER" />
+    <result column="is_has_wifi" property="isHasWifi" jdbcType="INTEGER" />
+    <result column="is_has_amusement" property="isHasAmusement" jdbcType="INTEGER" />
+    <result column="is_can_swimming" property="isCanSwimming" jdbcType="INTEGER" />
+    <result column="is_has_water_recreation" property="isHasWaterRecreation" jdbcType="INTEGER" />
+    <result column="is_has_therma" property="isHasTherma" jdbcType="INTEGER" />
+    <result column="is_can_meeting" property="isCanMeeting" jdbcType="INTEGER" />
+    <result column="is_can_boating" property="isCanBoating" jdbcType="INTEGER" />
+    <result column="is_has_stay" property="isHasStay" jdbcType="INTEGER" />
+    <result column="is_has_healthcare" property="isHasHealthcare" jdbcType="INTEGER" />
+    <result column="is_has_orchard" property="isHasOrchard" jdbcType="INTEGER" />
+    <result column="rv_parking_num" property="rvParkingNum" jdbcType="INTEGER" />
+    <result column="rv_parking_price" property="rvParkingPrice" jdbcType="INTEGER" />
+    <result column="trailer_parking_num" property="trailerParkingNum" jdbcType="INTEGER" />
+    <result column="trailer_parking_price" property="trailerParkingPrice" jdbcType="INTEGER" />
+    <result column="tent_num" property="tentNum" jdbcType="INTEGER" />
+    <result column="tent_price" property="tentPrice" jdbcType="INTEGER" />
+    <result column="open_season" property="openSeason" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIME" />
+    <result column="end_time" property="endTime" jdbcType="TIME" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="video_thum" property="videoThum" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="subtype" property="subtype" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.eliteams.quick4j.web.model.TResort" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, address, city, campsite_type, style, user_id, phone, is_has_water, is_has_electric, 
+    is_has_toilet, is_can_bathe, is_has_restaurant, is_can_shopping, is_has_bar, is_can_barbecue, 
+    is_can_ski, is_has_playground, is_can_footpath, is_can_cycle, is_can_fishing, is_can_ride, 
+    is_has_wifi, is_has_amusement, is_can_swimming, is_has_water_recreation, is_has_therma, 
+    is_can_meeting, is_can_boating, is_has_stay, is_has_healthcare, is_has_orchard, rv_parking_num, 
+    rv_parking_price, trailer_parking_num, trailer_parking_price, tent_num, tent_price, 
+    open_season, start_time, end_time, video_url, video_thum, longitude, latitude, subtype, 
+    score, is_valid, created_at, updated_at
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.eliteams.quick4j.web.model.TResortExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_resort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.TResortExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_resort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_resort
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_resort
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.TResortExample" >
+    delete from t_resort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.TResort"  useGeneratedKeys="true" keyProperty="id">
+    insert into t_resort (id, name, address, 
+      city, campsite_type, style, 
+      user_id, phone, is_has_water, 
+      is_has_electric, is_has_toilet, is_can_bathe, 
+      is_has_restaurant, is_can_shopping, is_has_bar, 
+      is_can_barbecue, is_can_ski, is_has_playground, 
+      is_can_footpath, is_can_cycle, is_can_fishing, 
+      is_can_ride, is_has_wifi, is_has_amusement, 
+      is_can_swimming, is_has_water_recreation, is_has_therma, 
+      is_can_meeting, is_can_boating, is_has_stay, 
+      is_has_healthcare, is_has_orchard, rv_parking_num, 
+      rv_parking_price, trailer_parking_num, trailer_parking_price, 
+      tent_num, tent_price, open_season, 
+      start_time, end_time, video_url, 
+      video_thum, longitude, latitude, 
+      subtype, score, is_valid, 
+      created_at, updated_at, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{campsiteType,jdbcType=VARCHAR}, #{style,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{isHasWater,jdbcType=INTEGER}, 
+      #{isHasElectric,jdbcType=INTEGER}, #{isHasToilet,jdbcType=INTEGER}, #{isCanBathe,jdbcType=INTEGER}, 
+      #{isHasRestaurant,jdbcType=INTEGER}, #{isCanShopping,jdbcType=INTEGER}, #{isHasBar,jdbcType=INTEGER}, 
+      #{isCanBarbecue,jdbcType=INTEGER}, #{isCanSki,jdbcType=INTEGER}, #{isHasPlayground,jdbcType=INTEGER}, 
+      #{isCanFootpath,jdbcType=INTEGER}, #{isCanCycle,jdbcType=INTEGER}, #{isCanFishing,jdbcType=INTEGER}, 
+      #{isCanRide,jdbcType=INTEGER}, #{isHasWifi,jdbcType=INTEGER}, #{isHasAmusement,jdbcType=INTEGER}, 
+      #{isCanSwimming,jdbcType=INTEGER}, #{isHasWaterRecreation,jdbcType=INTEGER}, #{isHasTherma,jdbcType=INTEGER}, 
+      #{isCanMeeting,jdbcType=INTEGER}, #{isCanBoating,jdbcType=INTEGER}, #{isHasStay,jdbcType=INTEGER}, 
+      #{isHasHealthcare,jdbcType=INTEGER}, #{isHasOrchard,jdbcType=INTEGER}, #{rvParkingNum,jdbcType=INTEGER}, 
+      #{rvParkingPrice,jdbcType=INTEGER}, #{trailerParkingNum,jdbcType=INTEGER}, #{trailerParkingPrice,jdbcType=INTEGER}, 
+      #{tentNum,jdbcType=INTEGER}, #{tentPrice,jdbcType=INTEGER}, #{openSeason,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, #{videoUrl,jdbcType=VARCHAR}, 
+      #{videoThum,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{subtype,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{isValid,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.TResort" >
+    insert into t_resort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="campsiteType != null" >
+        campsite_type,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="isHasWater != null" >
+        is_has_water,
+      </if>
+      <if test="isHasElectric != null" >
+        is_has_electric,
+      </if>
+      <if test="isHasToilet != null" >
+        is_has_toilet,
+      </if>
+      <if test="isCanBathe != null" >
+        is_can_bathe,
+      </if>
+      <if test="isHasRestaurant != null" >
+        is_has_restaurant,
+      </if>
+      <if test="isCanShopping != null" >
+        is_can_shopping,
+      </if>
+      <if test="isHasBar != null" >
+        is_has_bar,
+      </if>
+      <if test="isCanBarbecue != null" >
+        is_can_barbecue,
+      </if>
+      <if test="isCanSki != null" >
+        is_can_ski,
+      </if>
+      <if test="isHasPlayground != null" >
+        is_has_playground,
+      </if>
+      <if test="isCanFootpath != null" >
+        is_can_footpath,
+      </if>
+      <if test="isCanCycle != null" >
+        is_can_cycle,
+      </if>
+      <if test="isCanFishing != null" >
+        is_can_fishing,
+      </if>
+      <if test="isCanRide != null" >
+        is_can_ride,
+      </if>
+      <if test="isHasWifi != null" >
+        is_has_wifi,
+      </if>
+      <if test="isHasAmusement != null" >
+        is_has_amusement,
+      </if>
+      <if test="isCanSwimming != null" >
+        is_can_swimming,
+      </if>
+      <if test="isHasWaterRecreation != null" >
+        is_has_water_recreation,
+      </if>
+      <if test="isHasTherma != null" >
+        is_has_therma,
+      </if>
+      <if test="isCanMeeting != null" >
+        is_can_meeting,
+      </if>
+      <if test="isCanBoating != null" >
+        is_can_boating,
+      </if>
+      <if test="isHasStay != null" >
+        is_has_stay,
+      </if>
+      <if test="isHasHealthcare != null" >
+        is_has_healthcare,
+      </if>
+      <if test="isHasOrchard != null" >
+        is_has_orchard,
+      </if>
+      <if test="rvParkingNum != null" >
+        rv_parking_num,
+      </if>
+      <if test="rvParkingPrice != null" >
+        rv_parking_price,
+      </if>
+      <if test="trailerParkingNum != null" >
+        trailer_parking_num,
+      </if>
+      <if test="trailerParkingPrice != null" >
+        trailer_parking_price,
+      </if>
+      <if test="tentNum != null" >
+        tent_num,
+      </if>
+      <if test="tentPrice != null" >
+        tent_price,
+      </if>
+      <if test="openSeason != null" >
+        open_season,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="videoThum != null" >
+        video_thum,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="subtype != null" >
+        subtype,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="campsiteType != null" >
+        #{campsiteType,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isHasWater != null" >
+        #{isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="isHasElectric != null" >
+        #{isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="isHasToilet != null" >
+        #{isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBathe != null" >
+        #{isCanBathe,jdbcType=INTEGER},
+      </if>
+      <if test="isHasRestaurant != null" >
+        #{isHasRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="isCanShopping != null" >
+        #{isCanShopping,jdbcType=INTEGER},
+      </if>
+      <if test="isHasBar != null" >
+        #{isHasBar,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBarbecue != null" >
+        #{isCanBarbecue,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSki != null" >
+        #{isCanSki,jdbcType=INTEGER},
+      </if>
+      <if test="isHasPlayground != null" >
+        #{isHasPlayground,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFootpath != null" >
+        #{isCanFootpath,jdbcType=INTEGER},
+      </if>
+      <if test="isCanCycle != null" >
+        #{isCanCycle,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFishing != null" >
+        #{isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="isCanRide != null" >
+        #{isCanRide,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWifi != null" >
+        #{isHasWifi,jdbcType=INTEGER},
+      </if>
+      <if test="isHasAmusement != null" >
+        #{isHasAmusement,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSwimming != null" >
+        #{isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWaterRecreation != null" >
+        #{isHasWaterRecreation,jdbcType=INTEGER},
+      </if>
+      <if test="isHasTherma != null" >
+        #{isHasTherma,jdbcType=INTEGER},
+      </if>
+      <if test="isCanMeeting != null" >
+        #{isCanMeeting,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBoating != null" >
+        #{isCanBoating,jdbcType=INTEGER},
+      </if>
+      <if test="isHasStay != null" >
+        #{isHasStay,jdbcType=INTEGER},
+      </if>
+      <if test="isHasHealthcare != null" >
+        #{isHasHealthcare,jdbcType=INTEGER},
+      </if>
+      <if test="isHasOrchard != null" >
+        #{isHasOrchard,jdbcType=INTEGER},
+      </if>
+      <if test="rvParkingNum != null" >
+        #{rvParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="rvParkingPrice != null" >
+        #{rvParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="trailerParkingNum != null" >
+        #{trailerParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="trailerParkingPrice != null" >
+        #{trailerParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="tentNum != null" >
+        #{tentNum,jdbcType=INTEGER},
+      </if>
+      <if test="tentPrice != null" >
+        #{tentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="openSeason != null" >
+        #{openSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoThum != null" >
+        #{videoThum,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="subtype != null" >
+        #{subtype,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.TResortExample" resultType="java.lang.Integer" >
+    select count(*) from t_resort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_resort
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.campsiteType != null" >
+        campsite_type = #{record.campsiteType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.style != null" >
+        style = #{record.style,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHasWater != null" >
+        is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasElectric != null" >
+        is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasToilet != null" >
+        is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanBathe != null" >
+        is_can_bathe = #{record.isCanBathe,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasRestaurant != null" >
+        is_has_restaurant = #{record.isHasRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanShopping != null" >
+        is_can_shopping = #{record.isCanShopping,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasBar != null" >
+        is_has_bar = #{record.isHasBar,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanBarbecue != null" >
+        is_can_barbecue = #{record.isCanBarbecue,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanSki != null" >
+        is_can_ski = #{record.isCanSki,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasPlayground != null" >
+        is_has_playground = #{record.isHasPlayground,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanFootpath != null" >
+        is_can_footpath = #{record.isCanFootpath,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanCycle != null" >
+        is_can_cycle = #{record.isCanCycle,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanFishing != null" >
+        is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanRide != null" >
+        is_can_ride = #{record.isCanRide,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasWifi != null" >
+        is_has_wifi = #{record.isHasWifi,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasAmusement != null" >
+        is_has_amusement = #{record.isHasAmusement,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanSwimming != null" >
+        is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasWaterRecreation != null" >
+        is_has_water_recreation = #{record.isHasWaterRecreation,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasTherma != null" >
+        is_has_therma = #{record.isHasTherma,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanMeeting != null" >
+        is_can_meeting = #{record.isCanMeeting,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanBoating != null" >
+        is_can_boating = #{record.isCanBoating,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasStay != null" >
+        is_has_stay = #{record.isHasStay,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasHealthcare != null" >
+        is_has_healthcare = #{record.isHasHealthcare,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasOrchard != null" >
+        is_has_orchard = #{record.isHasOrchard,jdbcType=INTEGER},
+      </if>
+      <if test="record.rvParkingNum != null" >
+        rv_parking_num = #{record.rvParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.rvParkingPrice != null" >
+        rv_parking_price = #{record.rvParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.trailerParkingNum != null" >
+        trailer_parking_num = #{record.trailerParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.trailerParkingPrice != null" >
+        trailer_parking_price = #{record.trailerParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.tentNum != null" >
+        tent_num = #{record.tentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.tentPrice != null" >
+        tent_price = #{record.tentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.openSeason != null" >
+        open_season = #{record.openSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIME},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIME},
+      </if>
+      <if test="record.videoUrl != null" >
+        video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoThum != null" >
+        video_thum = #{record.videoThum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.subtype != null" >
+        subtype = #{record.subtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.isValid != null" >
+        is_valid = #{record.isValid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_resort
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      campsite_type = #{record.campsiteType,jdbcType=VARCHAR},
+      style = #{record.style,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      is_can_bathe = #{record.isCanBathe,jdbcType=INTEGER},
+      is_has_restaurant = #{record.isHasRestaurant,jdbcType=INTEGER},
+      is_can_shopping = #{record.isCanShopping,jdbcType=INTEGER},
+      is_has_bar = #{record.isHasBar,jdbcType=INTEGER},
+      is_can_barbecue = #{record.isCanBarbecue,jdbcType=INTEGER},
+      is_can_ski = #{record.isCanSki,jdbcType=INTEGER},
+      is_has_playground = #{record.isHasPlayground,jdbcType=INTEGER},
+      is_can_footpath = #{record.isCanFootpath,jdbcType=INTEGER},
+      is_can_cycle = #{record.isCanCycle,jdbcType=INTEGER},
+      is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      is_can_ride = #{record.isCanRide,jdbcType=INTEGER},
+      is_has_wifi = #{record.isHasWifi,jdbcType=INTEGER},
+      is_has_amusement = #{record.isHasAmusement,jdbcType=INTEGER},
+      is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      is_has_water_recreation = #{record.isHasWaterRecreation,jdbcType=INTEGER},
+      is_has_therma = #{record.isHasTherma,jdbcType=INTEGER},
+      is_can_meeting = #{record.isCanMeeting,jdbcType=INTEGER},
+      is_can_boating = #{record.isCanBoating,jdbcType=INTEGER},
+      is_has_stay = #{record.isHasStay,jdbcType=INTEGER},
+      is_has_healthcare = #{record.isHasHealthcare,jdbcType=INTEGER},
+      is_has_orchard = #{record.isHasOrchard,jdbcType=INTEGER},
+      rv_parking_num = #{record.rvParkingNum,jdbcType=INTEGER},
+      rv_parking_price = #{record.rvParkingPrice,jdbcType=INTEGER},
+      trailer_parking_num = #{record.trailerParkingNum,jdbcType=INTEGER},
+      trailer_parking_price = #{record.trailerParkingPrice,jdbcType=INTEGER},
+      tent_num = #{record.tentNum,jdbcType=INTEGER},
+      tent_price = #{record.tentPrice,jdbcType=INTEGER},
+      open_season = #{record.openSeason,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIME},
+      end_time = #{record.endTime,jdbcType=TIME},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      video_thum = #{record.videoThum,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      subtype = #{record.subtype,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_resort
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      campsite_type = #{record.campsiteType,jdbcType=VARCHAR},
+      style = #{record.style,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      is_can_bathe = #{record.isCanBathe,jdbcType=INTEGER},
+      is_has_restaurant = #{record.isHasRestaurant,jdbcType=INTEGER},
+      is_can_shopping = #{record.isCanShopping,jdbcType=INTEGER},
+      is_has_bar = #{record.isHasBar,jdbcType=INTEGER},
+      is_can_barbecue = #{record.isCanBarbecue,jdbcType=INTEGER},
+      is_can_ski = #{record.isCanSki,jdbcType=INTEGER},
+      is_has_playground = #{record.isHasPlayground,jdbcType=INTEGER},
+      is_can_footpath = #{record.isCanFootpath,jdbcType=INTEGER},
+      is_can_cycle = #{record.isCanCycle,jdbcType=INTEGER},
+      is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      is_can_ride = #{record.isCanRide,jdbcType=INTEGER},
+      is_has_wifi = #{record.isHasWifi,jdbcType=INTEGER},
+      is_has_amusement = #{record.isHasAmusement,jdbcType=INTEGER},
+      is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      is_has_water_recreation = #{record.isHasWaterRecreation,jdbcType=INTEGER},
+      is_has_therma = #{record.isHasTherma,jdbcType=INTEGER},
+      is_can_meeting = #{record.isCanMeeting,jdbcType=INTEGER},
+      is_can_boating = #{record.isCanBoating,jdbcType=INTEGER},
+      is_has_stay = #{record.isHasStay,jdbcType=INTEGER},
+      is_has_healthcare = #{record.isHasHealthcare,jdbcType=INTEGER},
+      is_has_orchard = #{record.isHasOrchard,jdbcType=INTEGER},
+      rv_parking_num = #{record.rvParkingNum,jdbcType=INTEGER},
+      rv_parking_price = #{record.rvParkingPrice,jdbcType=INTEGER},
+      trailer_parking_num = #{record.trailerParkingNum,jdbcType=INTEGER},
+      trailer_parking_price = #{record.trailerParkingPrice,jdbcType=INTEGER},
+      tent_num = #{record.tentNum,jdbcType=INTEGER},
+      tent_price = #{record.tentPrice,jdbcType=INTEGER},
+      open_season = #{record.openSeason,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIME},
+      end_time = #{record.endTime,jdbcType=TIME},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      video_thum = #{record.videoThum,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      subtype = #{record.subtype,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.TResort" >
+    update t_resort
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="campsiteType != null" >
+        campsite_type = #{campsiteType,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isHasWater != null" >
+        is_has_water = #{isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="isHasElectric != null" >
+        is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="isHasToilet != null" >
+        is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBathe != null" >
+        is_can_bathe = #{isCanBathe,jdbcType=INTEGER},
+      </if>
+      <if test="isHasRestaurant != null" >
+        is_has_restaurant = #{isHasRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="isCanShopping != null" >
+        is_can_shopping = #{isCanShopping,jdbcType=INTEGER},
+      </if>
+      <if test="isHasBar != null" >
+        is_has_bar = #{isHasBar,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBarbecue != null" >
+        is_can_barbecue = #{isCanBarbecue,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSki != null" >
+        is_can_ski = #{isCanSki,jdbcType=INTEGER},
+      </if>
+      <if test="isHasPlayground != null" >
+        is_has_playground = #{isHasPlayground,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFootpath != null" >
+        is_can_footpath = #{isCanFootpath,jdbcType=INTEGER},
+      </if>
+      <if test="isCanCycle != null" >
+        is_can_cycle = #{isCanCycle,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFishing != null" >
+        is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="isCanRide != null" >
+        is_can_ride = #{isCanRide,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWifi != null" >
+        is_has_wifi = #{isHasWifi,jdbcType=INTEGER},
+      </if>
+      <if test="isHasAmusement != null" >
+        is_has_amusement = #{isHasAmusement,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSwimming != null" >
+        is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWaterRecreation != null" >
+        is_has_water_recreation = #{isHasWaterRecreation,jdbcType=INTEGER},
+      </if>
+      <if test="isHasTherma != null" >
+        is_has_therma = #{isHasTherma,jdbcType=INTEGER},
+      </if>
+      <if test="isCanMeeting != null" >
+        is_can_meeting = #{isCanMeeting,jdbcType=INTEGER},
+      </if>
+      <if test="isCanBoating != null" >
+        is_can_boating = #{isCanBoating,jdbcType=INTEGER},
+      </if>
+      <if test="isHasStay != null" >
+        is_has_stay = #{isHasStay,jdbcType=INTEGER},
+      </if>
+      <if test="isHasHealthcare != null" >
+        is_has_healthcare = #{isHasHealthcare,jdbcType=INTEGER},
+      </if>
+      <if test="isHasOrchard != null" >
+        is_has_orchard = #{isHasOrchard,jdbcType=INTEGER},
+      </if>
+      <if test="rvParkingNum != null" >
+        rv_parking_num = #{rvParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="rvParkingPrice != null" >
+        rv_parking_price = #{rvParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="trailerParkingNum != null" >
+        trailer_parking_num = #{trailerParkingNum,jdbcType=INTEGER},
+      </if>
+      <if test="trailerParkingPrice != null" >
+        trailer_parking_price = #{trailerParkingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="tentNum != null" >
+        tent_num = #{tentNum,jdbcType=INTEGER},
+      </if>
+      <if test="tentPrice != null" >
+        tent_price = #{tentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="openSeason != null" >
+        open_season = #{openSeason,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoThum != null" >
+        video_thum = #{videoThum,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="subtype != null" >
+        subtype = #{subtype,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.eliteams.quick4j.web.model.TResort" >
+    update t_resort
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      campsite_type = #{campsiteType,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      is_has_water = #{isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      is_can_bathe = #{isCanBathe,jdbcType=INTEGER},
+      is_has_restaurant = #{isHasRestaurant,jdbcType=INTEGER},
+      is_can_shopping = #{isCanShopping,jdbcType=INTEGER},
+      is_has_bar = #{isHasBar,jdbcType=INTEGER},
+      is_can_barbecue = #{isCanBarbecue,jdbcType=INTEGER},
+      is_can_ski = #{isCanSki,jdbcType=INTEGER},
+      is_has_playground = #{isHasPlayground,jdbcType=INTEGER},
+      is_can_footpath = #{isCanFootpath,jdbcType=INTEGER},
+      is_can_cycle = #{isCanCycle,jdbcType=INTEGER},
+      is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      is_can_ride = #{isCanRide,jdbcType=INTEGER},
+      is_has_wifi = #{isHasWifi,jdbcType=INTEGER},
+      is_has_amusement = #{isHasAmusement,jdbcType=INTEGER},
+      is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      is_has_water_recreation = #{isHasWaterRecreation,jdbcType=INTEGER},
+      is_has_therma = #{isHasTherma,jdbcType=INTEGER},
+      is_can_meeting = #{isCanMeeting,jdbcType=INTEGER},
+      is_can_boating = #{isCanBoating,jdbcType=INTEGER},
+      is_has_stay = #{isHasStay,jdbcType=INTEGER},
+      is_has_healthcare = #{isHasHealthcare,jdbcType=INTEGER},
+      is_has_orchard = #{isHasOrchard,jdbcType=INTEGER},
+      rv_parking_num = #{rvParkingNum,jdbcType=INTEGER},
+      rv_parking_price = #{rvParkingPrice,jdbcType=INTEGER},
+      trailer_parking_num = #{trailerParkingNum,jdbcType=INTEGER},
+      trailer_parking_price = #{trailerParkingPrice,jdbcType=INTEGER},
+      tent_num = #{tentNum,jdbcType=INTEGER},
+      tent_price = #{tentPrice,jdbcType=INTEGER},
+      open_season = #{openSeason,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      video_thum = #{videoThum,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      subtype = #{subtype,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.TResort" >
+    update t_resort
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      campsite_type = #{campsiteType,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      is_has_water = #{isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      is_can_bathe = #{isCanBathe,jdbcType=INTEGER},
+      is_has_restaurant = #{isHasRestaurant,jdbcType=INTEGER},
+      is_can_shopping = #{isCanShopping,jdbcType=INTEGER},
+      is_has_bar = #{isHasBar,jdbcType=INTEGER},
+      is_can_barbecue = #{isCanBarbecue,jdbcType=INTEGER},
+      is_can_ski = #{isCanSki,jdbcType=INTEGER},
+      is_has_playground = #{isHasPlayground,jdbcType=INTEGER},
+      is_can_footpath = #{isCanFootpath,jdbcType=INTEGER},
+      is_can_cycle = #{isCanCycle,jdbcType=INTEGER},
+      is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      is_can_ride = #{isCanRide,jdbcType=INTEGER},
+      is_has_wifi = #{isHasWifi,jdbcType=INTEGER},
+      is_has_amusement = #{isHasAmusement,jdbcType=INTEGER},
+      is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      is_has_water_recreation = #{isHasWaterRecreation,jdbcType=INTEGER},
+      is_has_therma = #{isHasTherma,jdbcType=INTEGER},
+      is_can_meeting = #{isCanMeeting,jdbcType=INTEGER},
+      is_can_boating = #{isCanBoating,jdbcType=INTEGER},
+      is_has_stay = #{isHasStay,jdbcType=INTEGER},
+      is_has_healthcare = #{isHasHealthcare,jdbcType=INTEGER},
+      is_has_orchard = #{isHasOrchard,jdbcType=INTEGER},
+      rv_parking_num = #{rvParkingNum,jdbcType=INTEGER},
+      rv_parking_price = #{rvParkingPrice,jdbcType=INTEGER},
+      trailer_parking_num = #{trailerParkingNum,jdbcType=INTEGER},
+      trailer_parking_price = #{trailerParkingPrice,jdbcType=INTEGER},
+      tent_num = #{tentNum,jdbcType=INTEGER},
+      tent_price = #{tentPrice,jdbcType=INTEGER},
+      open_season = #{openSeason,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      video_thum = #{videoThum,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      subtype = #{subtype,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+      <!--自定义-->
+
+    <resultMap id="tCampsiteVoMap" type="com.eliteams.quick4j.web.model.VO.TCampsiteVO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId"  />
+        <result column="name" property="name"  />
+        <result column="address" property="address"  />
+        <result column="city" property="city"  />
+        <result column="type" property="type" />
+        <result column="is_park_payment" property="isParkPayment" />
+        <result column="is_can_park" property="isCanPark" />
+        <result column="is_can_trailer" property="isCanTrailer"  />
+        <result column="is_has_water" property="isHasWater"  />
+        <result column="is_has_electric" property="isHasElectric"  />
+        <result column="is_has_toilet" property="isHasToilet" />
+        <result column="is_can_cooking" property="isCanCooking"  />
+        <result column="is_has_markets" property="isHasMarkets"  />
+        <result column="is_can_fishing" property="isCanFishing"  />
+        <result column="is_can_swimming" property="isCanSwimming"  />
+        <result column="is_can_tent" property="isCanTent"  />
+        <result column="longitude" property="longitude" />
+        <result column="k_code" property="kCode" />
+        <result column="latitude" property="latitude"  />
+        <result column="is_default_name" property="isDefaultName"  />
+        <result column="is_check" property="isCheck"  />
+        <result column="score" property="score"  />
+        <result column="is_valid" property="isValid"  />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt"  />
+        <result column="description" property="description" jdbcType="LONGVARCHAR" />
+
+        <association property="tUser" javaType="com.eliteams.quick4j.web.model.TUser" >
+            <id column="user_id" property="id"/>
+            <result column="user_name" property="name"/>
+            <result column="icon" property="icon"/>
+
+        </association>
+
+
+        <!--  跟TCampsiteVO 中的数据成员一样。-->
+        <collection property="tCampsiteImageList" ofType="com.eliteams.quick4j.web.model.TCampsiteImage">
+
+            <id column="image_id" property="id"  />
+            <result column="campsite_id" property="campsiteId"  />
+            <result column="image_url" property="imageUrl"  />
+            <result column="image_is_valid" property="isValid"  />
+            <result column="image_created_at" property="createdAt" />
+            <result column="image_updated_at" property="updatedAt"  />
+        </collection>
+
+
+        <collection property="tCommentList" ofType="com.eliteams.quick4j.web.model.TComment">
+            <id column="tcomment_id" property="id"/>
+            <result column="tcomment_user_id" property="userId"/>
+            <result column="comment" property="comment"/>
+            <result column="status" property="status"/>
+            <result column="comment_updated_at" property="updatedAt"/>
+        </collection>
+
+
+    </resultMap>
+
+
+  <select id="get_nearly_resort_mapper" resultMap="get_resortMap">
+
+      <![CDATA[
+        SELECT
+        t_resort.*,
+        t_user.name as user_name,
+        t_user.icon,
+        t_resort_image.resort_id,
+        t_resort_image.image_url
+
+        FROM
+        t_resort
+        left join t_user on t_user.id = t_resort.user_id
+        left join t_resort_image  on t_resort_image.resort_id = t_resort.id
+
+        WHERE
+
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - t_resort.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(t_resort.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - t_resort.`latitude` * PI()/180)/2),2))) < #{2}
+
+
+         ]]>
+
+
+  </select>
+
+    <resultMap id="tUserMap" type="com.eliteams.quick4j.web.model.TUser">
+        <id column="user_id" property="id"/>
+        <result column="user_name" property="name"/>
+        <result column="icon" property="icon"/>
+    </resultMap>
+
+    <resultMap id="tResortImageMap" type="com.eliteams.quick4j.web.model.TResortImage" >
+        <id column="resort_image_id" property="id" jdbcType="INTEGER" />
+        <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+        <result column="image_is_valid" property="isValid" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="tResortCommentMap" type="com.eliteams.quick4j.web.model.VO.TCommentVO" >
+        <result column="t_comment_user_id" property="userId" jdbcType="INTEGER" />
+        <result column="t_comment_campsite_id" property="campsiteId" jdbcType="INTEGER" />
+        <result column="t_comment_comment" property="comment" jdbcType="VARCHAR" />
+        <result column="t_comment_type" property="type" jdbcType="INTEGER" />
+        <result column="t_comment_status" property="status" jdbcType="INTEGER" />
+        <result column="t_comment_update_at" property="updatedAt" jdbcType="TIMESTAMP" />
+        <association property="tUser" javaType="com.eliteams.quick4j.web.model.TUser" resultMap="tUserMap"/>
+    </resultMap>
+
+
+
+    <resultMap id="get_resortMap" type="com.eliteams.quick4j.web.model.VO.TResortVO" extends="ResultMapWithBLOBs">
+        <association property="tUser" javaType="com.eliteams.quick4j.web.model.TUser" resultMap="tUserMap" >
+        </association>
+        <collection property="tResortImageList" ofType="com.eliteams.quick4j.web.model.TResortImage" resultMap="tResortImageMap"></collection>
+    </resultMap>
+
+    <select id="get_resort_mapper" resultMap="get_resortMap">
+
+        <![CDATA[
+        select
+        t_resort.* ,
+        t_user.name as user_name,
+         20 as type,
+         t_user.icon,
+         t_resort_image.id as resort_image_id,
+         t_resort_image.image_url,
+         t_resort_image.is_valid as image_is_valid
+         from
+         t_resort left join t_user on t_user.id=t_resort.user_id
+         left join t_resort_image on  t_resort.id=t_resort_image.resort_id
+
+          where
+          t_resort.id=#{0}
+
+
+        ]]>
+    </select>
+
+
+<!--    t_comment.user_id as t_comment_user_id,
+    t_comment.campsite_id as t_comment_campsite_id,
+    t_comment.comment as t_comment_comment,
+    t_comment.type as t_comment_type,
+    t_comment.status as t_comment_status,
+    t_comment.updated_at as t_comment_update_at-->
+
+
+    <select id="get_resort_comment_mapper" resultMap="tResortCommentMap" >
+        SELECT
+         t_comment.user_id as t_comment_user_id,
+        t_comment.campsite_id as t_comment_campsite_id,
+        t_comment.comment as t_comment_comment,
+        t_comment.type as t_comment_type,
+        t_comment.status as t_comment_status,
+        t_comment.updated_at as t_comment_update_at,
+        t_user.name AS user_name,
+        t_user.icon
+         FROM
+         t_comment LEFT JOIN  t_user ON  t_comment.user_id=t_user.id
+         WHERE
+         t_comment.campsite_id=#{0}
+         AND
+         t_comment.type=#{1}
+
+    </select>
+
+
+
+</mapper>

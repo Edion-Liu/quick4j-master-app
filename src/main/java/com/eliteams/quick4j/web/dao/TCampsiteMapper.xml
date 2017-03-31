@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.TCampsiteMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.TCampsite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_park_payment" property="isParkPayment" jdbcType="INTEGER" />
+    <result column="is_can_park" property="isCanPark" jdbcType="INTEGER" />
+    <result column="is_can_trailer" property="isCanTrailer" jdbcType="INTEGER" />
+    <result column="is_has_water" property="isHasWater" jdbcType="INTEGER" />
+    <result column="is_has_electric" property="isHasElectric" jdbcType="INTEGER" />
+    <result column="is_has_toilet" property="isHasToilet" jdbcType="INTEGER" />
+    <result column="is_can_cooking" property="isCanCooking" jdbcType="INTEGER" />
+    <result column="is_has_markets" property="isHasMarkets" jdbcType="INTEGER" />
+    <result column="is_can_fishing" property="isCanFishing" jdbcType="INTEGER" />
+    <result column="is_can_swimming" property="isCanSwimming" jdbcType="INTEGER" />
+    <result column="is_can_tent" property="isCanTent" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="k_code" property="kCode" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="is_default_name" property="isDefaultName" jdbcType="INTEGER" />
+    <result column="is_check" property="isCheck" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="romanticTime" property="romantictime" jdbcType="VARCHAR" />
+    <result column="romanticLong" property="romanticlong" jdbcType="VARCHAR" />
+    <result column="withDevice" property="withdevice" jdbcType="VARCHAR" />
+    <result column="romanticStartTime" property="romanticstarttime" jdbcType="VARCHAR" />
+    <result column="romanticEndTime" property="romanticendtime" jdbcType="VARCHAR" />
+    <result column="ticketPrice" property="ticketprice" jdbcType="VARCHAR" />
+    <result column="specialty" property="specialty" jdbcType="VARCHAR" />
+    <result column="consume" property="consume" jdbcType="VARCHAR" />
+    <result column="impression" property="impression" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.eliteams.quick4j.web.model.TCampsite" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, name, address, city, style, type, is_park_payment, is_can_park, is_can_trailer, 
+    is_has_water, is_has_electric, is_has_toilet, is_can_cooking, is_has_markets, is_can_fishing, 
+    is_can_swimming, is_can_tent, longitude, k_code, latitude, is_default_name, is_check, 
+    score, is_valid, created_at, updated_at, romanticTime, romanticLong, withDevice, 
+    romanticStartTime, romanticEndTime, ticketPrice, specialty, consume, impression
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.eliteams.quick4j.web.model.TCampsiteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_campsite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.TCampsiteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_campsite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_campsite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_campsite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.TCampsiteExample" >
+    delete from t_campsite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.TCampsite" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_campsite (id, user_id, name, 
+      address, city, style, 
+      type, is_park_payment, is_can_park, 
+      is_can_trailer, is_has_water, is_has_electric, 
+      is_has_toilet, is_can_cooking, is_has_markets, 
+      is_can_fishing, is_can_swimming, is_can_tent, 
+      longitude, k_code, latitude, 
+      is_default_name, is_check, score, 
+      is_valid, created_at, updated_at, 
+      romanticTime, romanticLong, withDevice, 
+      romanticStartTime, romanticEndTime, ticketPrice, 
+      specialty, consume, impression, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{style,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{isParkPayment,jdbcType=INTEGER}, #{isCanPark,jdbcType=INTEGER}, 
+      #{isCanTrailer,jdbcType=INTEGER}, #{isHasWater,jdbcType=INTEGER}, #{isHasElectric,jdbcType=INTEGER}, 
+      #{isHasToilet,jdbcType=INTEGER}, #{isCanCooking,jdbcType=INTEGER}, #{isHasMarkets,jdbcType=INTEGER}, 
+      #{isCanFishing,jdbcType=INTEGER}, #{isCanSwimming,jdbcType=INTEGER}, #{isCanTent,jdbcType=INTEGER}, 
+      #{longitude,jdbcType=DOUBLE}, #{kCode,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
+      #{isDefaultName,jdbcType=INTEGER}, #{isCheck,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{isValid,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{romantictime,jdbcType=VARCHAR}, #{romanticlong,jdbcType=VARCHAR}, #{withdevice,jdbcType=VARCHAR}, 
+      #{romanticstarttime,jdbcType=VARCHAR}, #{romanticendtime,jdbcType=VARCHAR}, #{ticketprice,jdbcType=VARCHAR}, 
+      #{specialty,jdbcType=VARCHAR}, #{consume,jdbcType=VARCHAR}, #{impression,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.TCampsite" >
+    insert into t_campsite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isParkPayment != null" >
+        is_park_payment,
+      </if>
+      <if test="isCanPark != null" >
+        is_can_park,
+      </if>
+      <if test="isCanTrailer != null" >
+        is_can_trailer,
+      </if>
+      <if test="isHasWater != null" >
+        is_has_water,
+      </if>
+      <if test="isHasElectric != null" >
+        is_has_electric,
+      </if>
+      <if test="isHasToilet != null" >
+        is_has_toilet,
+      </if>
+      <if test="isCanCooking != null" >
+        is_can_cooking,
+      </if>
+      <if test="isHasMarkets != null" >
+        is_has_markets,
+      </if>
+      <if test="isCanFishing != null" >
+        is_can_fishing,
+      </if>
+      <if test="isCanSwimming != null" >
+        is_can_swimming,
+      </if>
+      <if test="isCanTent != null" >
+        is_can_tent,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="kCode != null" >
+        k_code,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="isDefaultName != null" >
+        is_default_name,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="romantictime != null" >
+        romanticTime,
+      </if>
+      <if test="romanticlong != null" >
+        romanticLong,
+      </if>
+      <if test="withdevice != null" >
+        withDevice,
+      </if>
+      <if test="romanticstarttime != null" >
+        romanticStartTime,
+      </if>
+      <if test="romanticendtime != null" >
+        romanticEndTime,
+      </if>
+      <if test="ticketprice != null" >
+        ticketPrice,
+      </if>
+      <if test="specialty != null" >
+        specialty,
+      </if>
+      <if test="consume != null" >
+        consume,
+      </if>
+      <if test="impression != null" >
+        impression,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isParkPayment != null" >
+        #{isParkPayment,jdbcType=INTEGER},
+      </if>
+      <if test="isCanPark != null" >
+        #{isCanPark,jdbcType=INTEGER},
+      </if>
+      <if test="isCanTrailer != null" >
+        #{isCanTrailer,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWater != null" >
+        #{isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="isHasElectric != null" >
+        #{isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="isHasToilet != null" >
+        #{isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="isCanCooking != null" >
+        #{isCanCooking,jdbcType=INTEGER},
+      </if>
+      <if test="isHasMarkets != null" >
+        #{isHasMarkets,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFishing != null" >
+        #{isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSwimming != null" >
+        #{isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="isCanTent != null" >
+        #{isCanTent,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="kCode != null" >
+        #{kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="isDefaultName != null" >
+        #{isDefaultName,jdbcType=INTEGER},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="romantictime != null" >
+        #{romantictime,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticlong != null" >
+        #{romanticlong,jdbcType=VARCHAR},
+      </if>
+      <if test="withdevice != null" >
+        #{withdevice,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticstarttime != null" >
+        #{romanticstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticendtime != null" >
+        #{romanticendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketprice != null" >
+        #{ticketprice,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null" >
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="consume != null" >
+        #{consume,jdbcType=VARCHAR},
+      </if>
+      <if test="impression != null" >
+        #{impression,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.TCampsiteExample" resultType="java.lang.Integer" >
+    select count(*) from t_campsite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_campsite
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.style != null" >
+        style = #{record.style,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.isParkPayment != null" >
+        is_park_payment = #{record.isParkPayment,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanPark != null" >
+        is_can_park = #{record.isCanPark,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanTrailer != null" >
+        is_can_trailer = #{record.isCanTrailer,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasWater != null" >
+        is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasElectric != null" >
+        is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasToilet != null" >
+        is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanCooking != null" >
+        is_can_cooking = #{record.isCanCooking,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHasMarkets != null" >
+        is_has_markets = #{record.isHasMarkets,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanFishing != null" >
+        is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanSwimming != null" >
+        is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCanTent != null" >
+        is_can_tent = #{record.isCanTent,jdbcType=INTEGER},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.kCode != null" >
+        k_code = #{record.kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isDefaultName != null" >
+        is_default_name = #{record.isDefaultName,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCheck != null" >
+        is_check = #{record.isCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.isValid != null" >
+        is_valid = #{record.isValid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.romantictime != null" >
+        romanticTime = #{record.romantictime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.romanticlong != null" >
+        romanticLong = #{record.romanticlong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdevice != null" >
+        withDevice = #{record.withdevice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.romanticstarttime != null" >
+        romanticStartTime = #{record.romanticstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.romanticendtime != null" >
+        romanticEndTime = #{record.romanticendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketprice != null" >
+        ticketPrice = #{record.ticketprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialty != null" >
+        specialty = #{record.specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consume != null" >
+        consume = #{record.consume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.impression != null" >
+        impression = #{record.impression,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_campsite
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      style = #{record.style,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      is_park_payment = #{record.isParkPayment,jdbcType=INTEGER},
+      is_can_park = #{record.isCanPark,jdbcType=INTEGER},
+      is_can_trailer = #{record.isCanTrailer,jdbcType=INTEGER},
+      is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      is_can_cooking = #{record.isCanCooking,jdbcType=INTEGER},
+      is_has_markets = #{record.isHasMarkets,jdbcType=INTEGER},
+      is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      is_can_tent = #{record.isCanTent,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      k_code = #{record.kCode,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      is_default_name = #{record.isDefaultName,jdbcType=INTEGER},
+      is_check = #{record.isCheck,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      romanticTime = #{record.romantictime,jdbcType=VARCHAR},
+      romanticLong = #{record.romanticlong,jdbcType=VARCHAR},
+      withDevice = #{record.withdevice,jdbcType=VARCHAR},
+      romanticStartTime = #{record.romanticstarttime,jdbcType=VARCHAR},
+      romanticEndTime = #{record.romanticendtime,jdbcType=VARCHAR},
+      ticketPrice = #{record.ticketprice,jdbcType=VARCHAR},
+      specialty = #{record.specialty,jdbcType=VARCHAR},
+      consume = #{record.consume,jdbcType=VARCHAR},
+      impression = #{record.impression,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_campsite
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      style = #{record.style,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      is_park_payment = #{record.isParkPayment,jdbcType=INTEGER},
+      is_can_park = #{record.isCanPark,jdbcType=INTEGER},
+      is_can_trailer = #{record.isCanTrailer,jdbcType=INTEGER},
+      is_has_water = #{record.isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{record.isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{record.isHasToilet,jdbcType=INTEGER},
+      is_can_cooking = #{record.isCanCooking,jdbcType=INTEGER},
+      is_has_markets = #{record.isHasMarkets,jdbcType=INTEGER},
+      is_can_fishing = #{record.isCanFishing,jdbcType=INTEGER},
+      is_can_swimming = #{record.isCanSwimming,jdbcType=INTEGER},
+      is_can_tent = #{record.isCanTent,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      k_code = #{record.kCode,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      is_default_name = #{record.isDefaultName,jdbcType=INTEGER},
+      is_check = #{record.isCheck,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      is_valid = #{record.isValid,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      romanticTime = #{record.romantictime,jdbcType=VARCHAR},
+      romanticLong = #{record.romanticlong,jdbcType=VARCHAR},
+      withDevice = #{record.withdevice,jdbcType=VARCHAR},
+      romanticStartTime = #{record.romanticstarttime,jdbcType=VARCHAR},
+      romanticEndTime = #{record.romanticendtime,jdbcType=VARCHAR},
+      ticketPrice = #{record.ticketprice,jdbcType=VARCHAR},
+      specialty = #{record.specialty,jdbcType=VARCHAR},
+      consume = #{record.consume,jdbcType=VARCHAR},
+      impression = #{record.impression,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.TCampsite" >
+    update t_campsite
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isParkPayment != null" >
+        is_park_payment = #{isParkPayment,jdbcType=INTEGER},
+      </if>
+      <if test="isCanPark != null" >
+        is_can_park = #{isCanPark,jdbcType=INTEGER},
+      </if>
+      <if test="isCanTrailer != null" >
+        is_can_trailer = #{isCanTrailer,jdbcType=INTEGER},
+      </if>
+      <if test="isHasWater != null" >
+        is_has_water = #{isHasWater,jdbcType=INTEGER},
+      </if>
+      <if test="isHasElectric != null" >
+        is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      </if>
+      <if test="isHasToilet != null" >
+        is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      </if>
+      <if test="isCanCooking != null" >
+        is_can_cooking = #{isCanCooking,jdbcType=INTEGER},
+      </if>
+      <if test="isHasMarkets != null" >
+        is_has_markets = #{isHasMarkets,jdbcType=INTEGER},
+      </if>
+      <if test="isCanFishing != null" >
+        is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      </if>
+      <if test="isCanSwimming != null" >
+        is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      </if>
+      <if test="isCanTent != null" >
+        is_can_tent = #{isCanTent,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="kCode != null" >
+        k_code = #{kCode,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="isDefaultName != null" >
+        is_default_name = #{isDefaultName,jdbcType=INTEGER},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="romantictime != null" >
+        romanticTime = #{romantictime,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticlong != null" >
+        romanticLong = #{romanticlong,jdbcType=VARCHAR},
+      </if>
+      <if test="withdevice != null" >
+        withDevice = #{withdevice,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticstarttime != null" >
+        romanticStartTime = #{romanticstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="romanticendtime != null" >
+        romanticEndTime = #{romanticendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketprice != null" >
+        ticketPrice = #{ticketprice,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null" >
+        specialty = #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="consume != null" >
+        consume = #{consume,jdbcType=VARCHAR},
+      </if>
+      <if test="impression != null" >
+        impression = #{impression,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.eliteams.quick4j.web.model.TCampsite" >
+    update t_campsite
+    set user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      is_park_payment = #{isParkPayment,jdbcType=INTEGER},
+      is_can_park = #{isCanPark,jdbcType=INTEGER},
+      is_can_trailer = #{isCanTrailer,jdbcType=INTEGER},
+      is_has_water = #{isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      is_can_cooking = #{isCanCooking,jdbcType=INTEGER},
+      is_has_markets = #{isHasMarkets,jdbcType=INTEGER},
+      is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      is_can_tent = #{isCanTent,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      k_code = #{kCode,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      is_default_name = #{isDefaultName,jdbcType=INTEGER},
+      is_check = #{isCheck,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      romanticTime = #{romantictime,jdbcType=VARCHAR},
+      romanticLong = #{romanticlong,jdbcType=VARCHAR},
+      withDevice = #{withdevice,jdbcType=VARCHAR},
+      romanticStartTime = #{romanticstarttime,jdbcType=VARCHAR},
+      romanticEndTime = #{romanticendtime,jdbcType=VARCHAR},
+      ticketPrice = #{ticketprice,jdbcType=VARCHAR},
+      specialty = #{specialty,jdbcType=VARCHAR},
+      consume = #{consume,jdbcType=VARCHAR},
+      impression = #{impression,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.TCampsite" >
+    update t_campsite
+    set user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      style = #{style,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      is_park_payment = #{isParkPayment,jdbcType=INTEGER},
+      is_can_park = #{isCanPark,jdbcType=INTEGER},
+      is_can_trailer = #{isCanTrailer,jdbcType=INTEGER},
+      is_has_water = #{isHasWater,jdbcType=INTEGER},
+      is_has_electric = #{isHasElectric,jdbcType=INTEGER},
+      is_has_toilet = #{isHasToilet,jdbcType=INTEGER},
+      is_can_cooking = #{isCanCooking,jdbcType=INTEGER},
+      is_has_markets = #{isHasMarkets,jdbcType=INTEGER},
+      is_can_fishing = #{isCanFishing,jdbcType=INTEGER},
+      is_can_swimming = #{isCanSwimming,jdbcType=INTEGER},
+      is_can_tent = #{isCanTent,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      k_code = #{kCode,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      is_default_name = #{isDefaultName,jdbcType=INTEGER},
+      is_check = #{isCheck,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      romanticTime = #{romantictime,jdbcType=VARCHAR},
+      romanticLong = #{romanticlong,jdbcType=VARCHAR},
+      withDevice = #{withdevice,jdbcType=VARCHAR},
+      romanticStartTime = #{romanticstarttime,jdbcType=VARCHAR},
+      romanticEndTime = #{romanticendtime,jdbcType=VARCHAR},
+      ticketPrice = #{ticketprice,jdbcType=VARCHAR},
+      specialty = #{specialty,jdbcType=VARCHAR},
+      consume = #{consume,jdbcType=VARCHAR},
+      impression = #{impression,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+    <!--    自定义修改-->
+    <select id="nearly_has_campsite" resultType="com.eliteams.quick4j.web.model.TCampsite"  >
+
+        <![CDATA[
+        SELECT
+        id
+        FROM t_campsite cam
+        WHERE
+        cam.type = 0
+        and
+        cam.is_valid=1
+        and
+        (6378.138 * 2 * ASIN(SQRT(POW(SIN((#{1} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{0} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{0} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) <= 0.2)
+         ]]>
+
+    </select>
+
+
+
+
+
+    <select id="get_nearly_resort_mapper" resultType="com.eliteams.quick4j.web.model.TCampsite"  >
+
+        <![CDATA[
+        SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        20 as type,
+        cam.subtype,
+        t_resort_image.image_url,
+        if(cam.user_id = #{3}, 1, 0) as is_self,
+        t_user.name as user_name,
+        cam.address,
+        cam.city
+        FROM
+        t_resort cam
+        LEFT JOIN t_user ON t_user.id = cam.user_id
+        left join `t_resort_image` on t_resort_image.resort_id = cam.id
+
+        WHERE
+        (6378.138 * 2 * ASIN(SQRT(POW(SIN((#{1} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{0} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{0} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) <= #{2})
+        and
+        cam.is_valid=1
+        GROUP BY
+        cam.id
+        ]]>
+
+
+    </select>
+
+
+    <resultMap id="tCampsiteVoMap" type="com.eliteams.quick4j.web.model.VO.TCampsiteVO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId"  />
+        <result column="name" property="name"  />
+        <result column="address" property="address"  />
+        <result column="city" property="city"  />
+        <result column="type" property="type" />
+        <result column="is_park_payment" property="isParkPayment" />
+        <result column="is_can_park" property="isCanPark" />
+        <result column="is_can_trailer" property="isCanTrailer"  />
+        <result column="is_has_water" property="isHasWater"  />
+        <result column="is_has_electric" property="isHasElectric"  />
+        <result column="is_has_toilet" property="isHasToilet" />
+        <result column="is_can_cooking" property="isCanCooking"  />
+        <result column="is_has_markets" property="isHasMarkets"  />
+        <result column="is_can_fishing" property="isCanFishing"  />
+        <result column="is_can_swimming" property="isCanSwimming"  />
+        <result column="is_can_tent" property="isCanTent"  />
+        <result column="longitude" property="longitude" />
+        <result column="k_code" property="kCode" />
+        <result column="latitude" property="latitude"  />
+        <result column="is_default_name" property="isDefaultName"  />
+        <result column="is_check" property="isCheck"  />
+        <result column="score" property="score"  />
+        <result column="is_valid" property="isValid"  />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt"  />
+        <result column="description" property="description" jdbcType="LONGVARCHAR" />
+
+        <association property="tUser" javaType="com.eliteams.quick4j.web.model.TUser" >
+            <id column="user_id" property="id"/>
+            <result column="user_name" property="name"/>
+            <result column="icon" property="icon"/>
+
+        </association>
+
+
+        <!--  跟TCampsiteVO 中的数据成员一样。-->
+        <collection property="tCampsiteImageList" ofType="com.eliteams.quick4j.web.model.TCampsiteImage">
+
+            <id column="image_id" property="id"  />
+            <result column="campsite_id" property="campsiteId"  />
+            <result column="image_url" property="imageUrl"  />
+            <result column="image_is_valid" property="isValid"  />
+            <result column="image_created_at" property="createdAt" />
+            <result column="image_updated_at" property="updatedAt"  />
+        </collection>
+
+
+        <collection property="tCommentList" ofType="com.eliteams.quick4j.web.model.TComment">
+            <id column="tcomment_id" property="id"/>
+            <result column="tcomment_user_id" property="userId"/>
+            <result column="comment" property="comment"/>
+            <result column="status" property="status"/>
+            <result column="comment_updated_at" property="updatedAt"/>
+        </collection>
+
+
+    </resultMap>
+
+
+
+
+
+
+    <select id="get_nearly_wowo_mapper"  resultMap="tCampsiteVoMap"  >
+        <!-- <select id="get_nearly_wowo"  resultType="com.eliteams.quick4j.web.model.TCampsite"  >-->
+
+        <![CDATA[
+
+       SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.latitude is not null
+         AND
+         cam.longitude is not null
+         AND
+         cam.is_valid=1
+         AND
+         cam.type =#{2}
+         AND
+         6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{3}
+        ORDER BY
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2)))
+
+         ]]>
+
+    </select>
+
+
+    <select id="get_nearly_wowoall_mapper"  resultMap="tCampsiteVoMap"  >
+        <!-- <select id="get_nearly_wowo"  resultType="com.eliteams.quick4j.web.model.TCampsite"  >-->
+
+        <![CDATA[
+
+       SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.latitude is not null
+         AND
+         cam.longitude is not null
+         AND
+         cam.is_valid=1
+         AND
+         6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{2}
+        ORDER BY
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2)))
+        ,cam.updated_at DESC
+         ]]>
+
+    </select>
+
+    <select id="get_campsite_by_user_id_mapper"  resultMap="tCampsiteVoMap"  >
+        <![CDATA[
+
+       SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at,
+        t_user.icon,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.is_valid=1
+         AND
+         t_user.id=#{0}
+
+         ]]>
+
+    </select>
+
+
+  <select id="get_campsitescan_by_user_id_mapper"  resultMap="tCampsiteVoMap"  >
+    <![CDATA[
+
+       SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at,
+        t_user.icon,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+        left join t_comment  on t_comment.campsite_id = cam.id
+
+        WHERE
+         cam.is_valid=1
+         AND
+         t_comment.user_id=#{0}
+
+         ]]>
+
+  </select>
+
+
+
+    <select id="get_nearly_wowoall_offepage_mapper"  resultMap="tCampsiteVoMap"  >
+        <![CDATA[
+        SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.latitude is not null
+         AND
+         cam.longitude is not null
+         AND
+         cam.is_valid=1
+         AND
+         6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{2}
+
+         ]]>
+
+    </select>
+
+
+    <select id="get_campsiteByID_mapper" resultMap="tCampsiteVoMap">
+
+        <![CDATA[
+           SELECT
+           t_campsite.*, t_user.name as user_name ,
+           t_campsite_image.image_url,
+           t_campsite_image.campsite_id ,
+           t_comment.comment,
+           t_comment.status,
+            t_comment.updated_at as comment_updated_at,
+           t_comment.user_id AS  tcomment_user_id,
+           t_user.icon,
+           t_user.id as user_id
+           from
+           t_campsite,t_campsite_image,t_user,t_comment
+            WHERE
+            t_campsite.id=#{0}
+            AND
+            t_campsite_image.campsite_id=#{0}
+            AND
+            t_user.id=t_campsite.user_id
+             AND
+             t_comment.campsite_id=t_campsite.id
+
+
+         ]]>
+    </select>
+
+
+    <select id="get_campsite_by_city_mapper" resultMap="tCampsiteVoMap">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.is_valid=1
+         AND
+         cam.city=#{0}
+        ORDER BY
+        cam.updated_at
+
+
+
+        ]]>
+
+
+    </select>
+
+
+    <select id="get_campsite_by_cityAndtype_mapper" resultMap="tCampsiteVoMap">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        t_user.name as user_name,
+        t_campsite_image.image_url,
+        t_campsite_image.id as image_id,
+        t_campsite_image.is_valid as image_is_valid,
+        t_campsite_image.created_at as image_created_at,
+        t_campsite_image.updated_at as image_updated_at
+        FROM
+        t_campsite cam
+        left join t_user on t_user.id = cam.user_id
+        left join t_campsite_image  on t_campsite_image.campsite_id = cam.id
+
+        WHERE
+         cam.is_valid=1
+         AND
+         cam.city=#{0}
+         AND
+         cam.type=#{1}
+        ORDER BY
+        cam.updated_at
+
+
+
+        ]]>
+
+
+    </select>
+
+
+
+
+
+
+    <select id="get_campsite" resultType="com.eliteams.quick4j.web.model.TCampsite">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.user_id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at
+        FROM
+           t_campsite cam
+        WHERE
+        cam.type=#{3}
+        AND
+        cam.is_valid=1
+        AND
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{2}
+        ]]>
+
+    </select>
+
+
+    <select id="get_campsite_alltype" resultType="com.eliteams.quick4j.web.model.TCampsite">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.user_id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at
+        FROM
+           t_campsite cam
+        WHERE
+        cam.is_valid=1
+        AND
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{2}
+        ]]>
+
+    </select>
+
+
+    <select id="get_campsite_alltypemore" resultType="com.eliteams.quick4j.web.model.TCampsite">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.user_id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at
+        FROM
+           t_campsite cam
+        WHERE
+        cam.is_valid=1
+        AND
+        cam.id !=#{3}
+        AND
+        6378.138 * 2 * ASIN(SQRT(POW(SIN((#{0} * PI()/180 - cam.`longitude` * PI()/180)/2),2) + COS(#{1} * PI()/180) * COS(cam.`latitude` * PI()/180) * POW(SIN((#{1} * PI()/180 - cam.`latitude` * PI()/180)/2),2))) < #{2}
+        ]]>
+
+    </select>
+
+
+
+    <select id="get_campsite_alltype_hot" resultType="com.eliteams.quick4j.web.model.TCampsite">
+        <![CDATA[
+
+        SELECT
+        cam.id,
+        cam.user_id,
+        cam.latitude,
+        cam.longitude,
+        cam.name,
+        cam.address,
+        cam.city,
+        cam.type,
+        cam.updated_at
+        FROM
+           t_campsite cam
+        WHERE
+        cam.is_valid=1
+        AND
+        cam.score=5
+        ]]>
+
+    </select>
+
+
+</mapper>

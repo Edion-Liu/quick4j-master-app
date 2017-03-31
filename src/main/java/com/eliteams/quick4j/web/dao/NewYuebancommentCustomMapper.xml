@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.NewYuebancommentCustomMapper" >
+
+
+
+
+    <select id="selectbyyuebanid" parameterType="int"
+            resultType="com.eliteams.quick4j.web.model.NewYuebancommentCustom">
+        SELECT * FROM new_yuebancomment
+        WHERE yuebanid=#{0}
+    </select>
+
+    <select id="selectbyyuebanid3" parameterType="int" resultType="com.eliteams.quick4j.web.model.NewYuebancommentCustom">
+
+      SELECT * FROM new_yuebancomment WHERE   yuebanid=#{0} order by yuebantime desc limit 3
+
+    </select>
+
+</mapper>

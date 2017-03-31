@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.NewAdvertisementMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.NewAdvertisement" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="adupdate" property="adupdate" jdbcType="TIMESTAMP" />
+    <result column="adtitle" property="adtitle" jdbcType="VARCHAR" />
+    <result column="addescribe" property="addescribe" jdbcType="VARCHAR" />
+    <result column="adimage" property="adimage" jdbcType="VARCHAR" />
+    <result column="adtype" property="adtype" jdbcType="INTEGER" />
+    <result column="adlink" property="adlink" jdbcType="VARCHAR" />
+    <result column="adclickcount" property="adclickcount" jdbcType="INTEGER" />
+    <result column="adbusiness" property="adbusiness" jdbcType="INTEGER" />
+    <result column="adphone" property="adphone" jdbcType="VARCHAR" />
+    <result column="advaliddate" property="advaliddate" jdbcType="TIMESTAMP" />
+    <result column="advalidcount" property="advalidcount" jdbcType="INTEGER" />
+    <result column="advalidtype" property="advalidtype" jdbcType="INTEGER" />
+    <result column="adstatus" property="adstatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, adupdate, adtitle, addescribe, adimage, adtype, adlink, adclickcount, adbusiness, 
+    adphone, advaliddate, advalidcount, advalidtype, adstatus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.NewAdvertisementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from new_advertisement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from new_advertisement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new_advertisement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.NewAdvertisementExample" >
+    delete from new_advertisement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.NewAdvertisement" >
+    insert into new_advertisement (id, adupdate, adtitle, 
+      addescribe, adimage, adtype, 
+      adlink, adclickcount, adbusiness, 
+      adphone, advaliddate, advalidcount, 
+      advalidtype, adstatus)
+    values (#{id,jdbcType=INTEGER}, #{adupdate,jdbcType=TIMESTAMP}, #{adtitle,jdbcType=VARCHAR}, 
+      #{addescribe,jdbcType=VARCHAR}, #{adimage,jdbcType=VARCHAR}, #{adtype,jdbcType=INTEGER}, 
+      #{adlink,jdbcType=VARCHAR}, #{adclickcount,jdbcType=INTEGER}, #{adbusiness,jdbcType=INTEGER}, 
+      #{adphone,jdbcType=VARCHAR}, #{advaliddate,jdbcType=TIMESTAMP}, #{advalidcount,jdbcType=INTEGER}, 
+      #{advalidtype,jdbcType=INTEGER}, #{adstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.NewAdvertisement" >
+    insert into new_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adupdate != null" >
+        adupdate,
+      </if>
+      <if test="adtitle != null" >
+        adtitle,
+      </if>
+      <if test="addescribe != null" >
+        addescribe,
+      </if>
+      <if test="adimage != null" >
+        adimage,
+      </if>
+      <if test="adtype != null" >
+        adtype,
+      </if>
+      <if test="adlink != null" >
+        adlink,
+      </if>
+      <if test="adclickcount != null" >
+        adclickcount,
+      </if>
+      <if test="adbusiness != null" >
+        adbusiness,
+      </if>
+      <if test="adphone != null" >
+        adphone,
+      </if>
+      <if test="advaliddate != null" >
+        advaliddate,
+      </if>
+      <if test="advalidcount != null" >
+        advalidcount,
+      </if>
+      <if test="advalidtype != null" >
+        advalidtype,
+      </if>
+      <if test="adstatus != null" >
+        adstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adupdate != null" >
+        #{adupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adtitle != null" >
+        #{adtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addescribe != null" >
+        #{addescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="adimage != null" >
+        #{adimage,jdbcType=VARCHAR},
+      </if>
+      <if test="adtype != null" >
+        #{adtype,jdbcType=INTEGER},
+      </if>
+      <if test="adlink != null" >
+        #{adlink,jdbcType=VARCHAR},
+      </if>
+      <if test="adclickcount != null" >
+        #{adclickcount,jdbcType=INTEGER},
+      </if>
+      <if test="adbusiness != null" >
+        #{adbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="adphone != null" >
+        #{adphone,jdbcType=VARCHAR},
+      </if>
+      <if test="advaliddate != null" >
+        #{advaliddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advalidcount != null" >
+        #{advalidcount,jdbcType=INTEGER},
+      </if>
+      <if test="advalidtype != null" >
+        #{advalidtype,jdbcType=INTEGER},
+      </if>
+      <if test="adstatus != null" >
+        #{adstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.NewAdvertisementExample" resultType="java.lang.Integer" >
+    select count(*) from new_advertisement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update new_advertisement
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.adupdate != null" >
+        adupdate = #{record.adupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.adtitle != null" >
+        adtitle = #{record.adtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addescribe != null" >
+        addescribe = #{record.addescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adimage != null" >
+        adimage = #{record.adimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adtype != null" >
+        adtype = #{record.adtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.adlink != null" >
+        adlink = #{record.adlink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adclickcount != null" >
+        adclickcount = #{record.adclickcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.adbusiness != null" >
+        adbusiness = #{record.adbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="record.adphone != null" >
+        adphone = #{record.adphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.advaliddate != null" >
+        advaliddate = #{record.advaliddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.advalidcount != null" >
+        advalidcount = #{record.advalidcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.advalidtype != null" >
+        advalidtype = #{record.advalidtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.adstatus != null" >
+        adstatus = #{record.adstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update new_advertisement
+    set id = #{record.id,jdbcType=INTEGER},
+      adupdate = #{record.adupdate,jdbcType=TIMESTAMP},
+      adtitle = #{record.adtitle,jdbcType=VARCHAR},
+      addescribe = #{record.addescribe,jdbcType=VARCHAR},
+      adimage = #{record.adimage,jdbcType=VARCHAR},
+      adtype = #{record.adtype,jdbcType=INTEGER},
+      adlink = #{record.adlink,jdbcType=VARCHAR},
+      adclickcount = #{record.adclickcount,jdbcType=INTEGER},
+      adbusiness = #{record.adbusiness,jdbcType=INTEGER},
+      adphone = #{record.adphone,jdbcType=VARCHAR},
+      advaliddate = #{record.advaliddate,jdbcType=TIMESTAMP},
+      advalidcount = #{record.advalidcount,jdbcType=INTEGER},
+      advalidtype = #{record.advalidtype,jdbcType=INTEGER},
+      adstatus = #{record.adstatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.NewAdvertisement" >
+    update new_advertisement
+    <set >
+      <if test="adupdate != null" >
+        adupdate = #{adupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adtitle != null" >
+        adtitle = #{adtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addescribe != null" >
+        addescribe = #{addescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="adimage != null" >
+        adimage = #{adimage,jdbcType=VARCHAR},
+      </if>
+      <if test="adtype != null" >
+        adtype = #{adtype,jdbcType=INTEGER},
+      </if>
+      <if test="adlink != null" >
+        adlink = #{adlink,jdbcType=VARCHAR},
+      </if>
+      <if test="adclickcount != null" >
+        adclickcount = #{adclickcount,jdbcType=INTEGER},
+      </if>
+      <if test="adbusiness != null" >
+        adbusiness = #{adbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="adphone != null" >
+        adphone = #{adphone,jdbcType=VARCHAR},
+      </if>
+      <if test="advaliddate != null" >
+        advaliddate = #{advaliddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advalidcount != null" >
+        advalidcount = #{advalidcount,jdbcType=INTEGER},
+      </if>
+      <if test="advalidtype != null" >
+        advalidtype = #{advalidtype,jdbcType=INTEGER},
+      </if>
+      <if test="adstatus != null" >
+        adstatus = #{adstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.NewAdvertisement" >
+    update new_advertisement
+    set adupdate = #{adupdate,jdbcType=TIMESTAMP},
+      adtitle = #{adtitle,jdbcType=VARCHAR},
+      addescribe = #{addescribe,jdbcType=VARCHAR},
+      adimage = #{adimage,jdbcType=VARCHAR},
+      adtype = #{adtype,jdbcType=INTEGER},
+      adlink = #{adlink,jdbcType=VARCHAR},
+      adclickcount = #{adclickcount,jdbcType=INTEGER},
+      adbusiness = #{adbusiness,jdbcType=INTEGER},
+      adphone = #{adphone,jdbcType=VARCHAR},
+      advaliddate = #{advaliddate,jdbcType=TIMESTAMP},
+      advalidcount = #{advalidcount,jdbcType=INTEGER},
+      advalidtype = #{advalidtype,jdbcType=INTEGER},
+      adstatus = #{adstatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

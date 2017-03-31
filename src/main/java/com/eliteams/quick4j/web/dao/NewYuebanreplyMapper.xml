@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eliteams.quick4j.web.dao.NewYuebanreplyMapper" >
+  <resultMap id="BaseResultMap" type="com.eliteams.quick4j.web.model.NewYuebanreply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="yuebancommentreplyid" property="yuebancommentreplyid" jdbcType="INTEGER" />
+    <result column="yuebanreplydate" property="yuebanreplydate" jdbcType="TIMESTAMP" />
+    <result column="yuebanreplycontent" property="yuebanreplycontent" jdbcType="VARCHAR" />
+    <result column="yuebanreplyto" property="yuebanreplyto" jdbcType="VARCHAR" />
+    <result column="yuebanreplyusername" property="yuebanreplyusername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, yuebancommentreplyid, yuebanreplydate, yuebanreplycontent, yuebanreplyto, yuebanreplyusername
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.eliteams.quick4j.web.model.NewYuebanreplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from new_yuebanreply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from new_yuebanreply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new_yuebanreply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebanreplyExample" >
+    delete from new_yuebanreply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.eliteams.quick4j.web.model.NewYuebanreply" >
+    insert into new_yuebanreply (id, yuebancommentreplyid, yuebanreplydate, 
+      yuebanreplycontent, yuebanreplyto, yuebanreplyusername
+      )
+    values (#{id,jdbcType=INTEGER}, #{yuebancommentreplyid,jdbcType=INTEGER}, #{yuebanreplydate,jdbcType=TIMESTAMP}, 
+      #{yuebanreplycontent,jdbcType=VARCHAR}, #{yuebanreplyto,jdbcType=VARCHAR}, #{yuebanreplyusername,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eliteams.quick4j.web.model.NewYuebanreply" >
+    insert into new_yuebanreply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="yuebancommentreplyid != null" >
+        yuebancommentreplyid,
+      </if>
+      <if test="yuebanreplydate != null" >
+        yuebanreplydate,
+      </if>
+      <if test="yuebanreplycontent != null" >
+        yuebanreplycontent,
+      </if>
+      <if test="yuebanreplyto != null" >
+        yuebanreplyto,
+      </if>
+      <if test="yuebanreplyusername != null" >
+        yuebanreplyusername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="yuebancommentreplyid != null" >
+        #{yuebancommentreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanreplydate != null" >
+        #{yuebanreplydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanreplycontent != null" >
+        #{yuebanreplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanreplyto != null" >
+        #{yuebanreplyto,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanreplyusername != null" >
+        #{yuebanreplyusername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.eliteams.quick4j.web.model.NewYuebanreplyExample" resultType="java.lang.Integer" >
+    select count(*) from new_yuebanreply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update new_yuebanreply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebancommentreplyid != null" >
+        yuebancommentreplyid = #{record.yuebancommentreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuebanreplydate != null" >
+        yuebanreplydate = #{record.yuebanreplydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yuebanreplycontent != null" >
+        yuebanreplycontent = #{record.yuebanreplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanreplyto != null" >
+        yuebanreplyto = #{record.yuebanreplyto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuebanreplyusername != null" >
+        yuebanreplyusername = #{record.yuebanreplyusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update new_yuebanreply
+    set id = #{record.id,jdbcType=INTEGER},
+      yuebancommentreplyid = #{record.yuebancommentreplyid,jdbcType=INTEGER},
+      yuebanreplydate = #{record.yuebanreplydate,jdbcType=TIMESTAMP},
+      yuebanreplycontent = #{record.yuebanreplycontent,jdbcType=VARCHAR},
+      yuebanreplyto = #{record.yuebanreplyto,jdbcType=VARCHAR},
+      yuebanreplyusername = #{record.yuebanreplyusername,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eliteams.quick4j.web.model.NewYuebanreply" >
+    update new_yuebanreply
+    <set >
+      <if test="yuebancommentreplyid != null" >
+        yuebancommentreplyid = #{yuebancommentreplyid,jdbcType=INTEGER},
+      </if>
+      <if test="yuebanreplydate != null" >
+        yuebanreplydate = #{yuebanreplydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuebanreplycontent != null" >
+        yuebanreplycontent = #{yuebanreplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanreplyto != null" >
+        yuebanreplyto = #{yuebanreplyto,jdbcType=VARCHAR},
+      </if>
+      <if test="yuebanreplyusername != null" >
+        yuebanreplyusername = #{yuebanreplyusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eliteams.quick4j.web.model.NewYuebanreply" >
+    update new_yuebanreply
+    set yuebancommentreplyid = #{yuebancommentreplyid,jdbcType=INTEGER},
+      yuebanreplydate = #{yuebanreplydate,jdbcType=TIMESTAMP},
+      yuebanreplycontent = #{yuebanreplycontent,jdbcType=VARCHAR},
+      yuebanreplyto = #{yuebanreplyto,jdbcType=VARCHAR},
+      yuebanreplyusername = #{yuebanreplyusername,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
